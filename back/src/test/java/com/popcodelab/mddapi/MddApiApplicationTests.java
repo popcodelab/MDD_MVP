@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi;
+package com.popcodelab.mddapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
