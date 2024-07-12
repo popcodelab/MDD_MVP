@@ -1,6 +1,4 @@
 # application.yml
-
-# Application properties
 app:
   name: @project.name@
   environment: development
@@ -34,3 +32,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+application:
+  security:
+    jwt:
+      secret: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
