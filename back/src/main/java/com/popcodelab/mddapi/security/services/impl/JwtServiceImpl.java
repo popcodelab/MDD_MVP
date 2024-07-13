@@ -1,5 +1,6 @@
 package com.popcodelab.mddapi.security.services.impl;
 
+import com.popcodelab.mddapi.security.services.JwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
@@ -11,8 +12,16 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 
+/**
+ * The JwtServiceImpl class is responsible for generating JWT tokens for authentication.
+ * It uses a JwtEncoder to encode the tokens and stores the expiration time as a string.
+ * The class implements the JwtService interface.
+ *
+ * @author Pignon Pierre-Olivier
+ * @version 1.0
+ */
 @Service
-public class JwtServiceImpl {
+public class JwtServiceImpl implements JwtService {
     /**
      * The JwtEncoder variable is used to encode JWT tokens.
      */
@@ -57,6 +66,6 @@ public class JwtServiceImpl {
      * @return the expiry time as an Instant object
      */
     private Instant getExpiryTime(Instant startInstant) {
-        return startInstant.plusMillis(Long.parseLong(stringJwtExpiration));
+        return startInstant.plusMillis(Long.parseLong(stringJwtExpiration.trim()));
     }
 }

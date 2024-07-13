@@ -1,23 +1,23 @@
 CREATE TABLE users (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                       username VARCHAR(64) NOT NULL,
-                       email VARCHAR(255) NOT NULL,
-                       password VARCHAR(128) NOT NULL,
+                       user_name VARCHAR(64) NOT NULL,
+                       email VARCHAR(248) NOT NULL,
+                       password VARCHAR(64) NOT NULL,
                        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE topics (
                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                        title VARCHAR(255) NOT NULL,
-                        description VARCHAR(255) NOT NULL,
+                        title VARCHAR(254) NOT NULL,
+                        description VARCHAR(254) NOT NULL,
                         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE posts (
                           id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                          title VARCHAR(255) NOT NULL,
+                          title VARCHAR(254) NOT NULL,
                           content LONGTEXT NOT NULL,
                           user_id BIGINT NOT NULL,
                           topic_id BIGINT NOT NULL,

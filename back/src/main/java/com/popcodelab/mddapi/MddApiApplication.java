@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Log4j2
 public class MddApiApplication {
 
-	public static void main(String[] args) {
-		log.debug("Starting MDD - Minimum Viable Product version");
-		SpringApplication.run(MddApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        log.debug("Starting MDD - Minimum Viable Product version");
+        SpringApplication.run(MddApiApplication.class, args);
+    }
 
 }
