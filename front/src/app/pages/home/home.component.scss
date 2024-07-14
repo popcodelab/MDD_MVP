@@ -5,3 +5,23 @@
   align-items: center;
   flex-direction: column;
 }
+
+mat-card-actions {
+  gap: 2rem;
+  display: flex;
+}
+
+img {
+  width: 550px;
+  height: 318px;
+}
+
+@media (width < 599px) {
+  mat-card-actions {
+    flex-direction: column;
+  }
+  img {
+    width: 80%;
+    height: auto;
+  }
+}
