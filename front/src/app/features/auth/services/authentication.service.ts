@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {LoginRequest} from "../../interfaces/auth/login.request";
+import {LoginRequest} from "../../../core/interfaces/auth/login.request";
 import {Observable} from "rxjs";
-import {LoginResponse} from "../../interfaces/auth/login.response";
-import {RegisterRequest} from "../../interfaces/auth/register.request";
+import {LoginResponse} from "../../../core/interfaces/auth/login.response";
+import {RegisterRequest} from "../../../core/interfaces/auth/register.request";
 
 /**
  * Represents an authentication service that provides methods for user login and registration.

@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {NgClass, NgIf} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MaterialModule} from "../../shared/material.modules";
+import {MaterialModule} from "../../../../shared/material.modules";
 import {Subscription} from "rxjs";
 import {RouterLink} from "@angular/router";
 

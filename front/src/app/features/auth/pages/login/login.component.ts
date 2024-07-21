@@ -7,10 +7,10 @@ import {MatIcon} from "@angular/material/icon";
 import {MatFormField, MatLabel, MatError} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {LoginRequest} from "../../core/interfaces/auth/login.request";
-import {AuthenticationService} from "../../core/services/api/authentication.service";
-import {SessionService} from "../../core/services/session.service";
-import {LoginResponse} from "../../core/interfaces/auth/login.response";
+import {LoginRequest} from "../../../../core/interfaces/auth/login.request";
+import {AuthenticationService} from "../../services/authentication.service";
+import {SessionService} from "../../services/session.service";
+import {LoginResponse} from "../../../../core/interfaces/auth/login.response";
 
 @Component({
   selector: 'app-login',
