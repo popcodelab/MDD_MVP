@@ -123,10 +123,8 @@ export class RegisterComponent implements OnDestroy {
    */
   onSubmit(): void {
     if (this.formControls["username"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
-
       const registerRequest: RegisterRequest = this.createRegisterRequest();
       this.handleRegistration(registerRequest);
-
     }
   }
 
