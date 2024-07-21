@@ -1,8 +1,8 @@
 package com.popcodelab.mddapi.services;
 
-import com.popcodelab.mddapi.dto.SignInDto;
-import com.popcodelab.mddapi.dto.UserDto;
-import com.popcodelab.mddapi.dto.UserToRegisterDto;
+import com.popcodelab.mddapi.dto.authentication.SignInDto;
+import com.popcodelab.mddapi.dto.authentication.UserDto;
+import com.popcodelab.mddapi.dto.authentication.UserToRegisterDto;
 import org.springframework.security.core.Authentication;
 
 /**

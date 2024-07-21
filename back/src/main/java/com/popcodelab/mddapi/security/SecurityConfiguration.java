@@ -18,8 +18,13 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * The SecurityConfiguration class is responsible for configuring the security settings
@@ -36,6 +41,9 @@ public class SecurityConfiguration {
 
     @Value("${application.security.jwt.secret}")
     private String jwtSecret;
+
+    @Value("${client.url}")
+    private String clientUrl;
 
     /**
      * Returns an instance of BCryptPasswordEncoder.
@@ -87,13 +95,25 @@ public class SecurityConfiguration {
      *
      * @see SecurityConfiguration
      */
-    private static final String[] WHITE_LIST_SWAGGER_URL = {
+    private static final String[] URLS_WHITE_LIST = {
             "/",
             "/api/auth/register",
             "/api/auth/login",
             "/swagger-ui/**",
             "/v3/api-docs/**"
     };
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Collections.singletonList(clientUrl));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
     /**
      * Returns the configured SecurityFilterChain object based on the provided HttpSecurity configuration.
@@ -105,10 +125,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         log.debug("SecurityFilterChain called");
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         http.csrf(AbstractHttpConfigurer::disable);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(WHITE_LIST_SWAGGER_URL)
+                .requestMatchers(URLS_WHITE_LIST)
                 .permitAll()
                 .anyRequest().authenticated());
         http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())));

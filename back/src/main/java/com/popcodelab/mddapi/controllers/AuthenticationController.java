@@ -1,8 +1,9 @@
 package com.popcodelab.mddapi.controllers;
 
-import com.popcodelab.mddapi.dto.SignInDto;
-import com.popcodelab.mddapi.dto.UserDto;
-import com.popcodelab.mddapi.dto.UserToRegisterDto;
+
+import com.popcodelab.mddapi.dto.authentication.SignInDto;
+import com.popcodelab.mddapi.dto.authentication.UserDto;
+import com.popcodelab.mddapi.dto.authentication.UserToRegisterDto;
 import com.popcodelab.mddapi.security.services.JwtService;
 import com.popcodelab.mddapi.services.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
 package com.popcodelab.mddapi.services.impl;
 
-import com.popcodelab.mddapi.dto.SignInDto;
-import com.popcodelab.mddapi.dto.UserDto;
-import com.popcodelab.mddapi.dto.UserToRegisterDto;
+import com.popcodelab.mddapi.dto.authentication.SignInDto;
+import com.popcodelab.mddapi.dto.authentication.UserDto;
+import com.popcodelab.mddapi.dto.authentication.UserToRegisterDto;
 import com.popcodelab.mddapi.entities.User;
 import com.popcodelab.mddapi.repositories.UserRepository;
 import com.popcodelab.mddapi.services.AuthenticationService;

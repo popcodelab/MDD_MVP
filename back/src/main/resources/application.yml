@@ -39,4 +39,12 @@ application:
       secret: ${JWT_SECRET_KEY}
       expiration: ${JWT_EXPIRATION}
 
+client:
+  url: ${CLIENT_URL}
+
+# Application server
+server:
+  host: http://localhost
+  port: 3005
+
 
