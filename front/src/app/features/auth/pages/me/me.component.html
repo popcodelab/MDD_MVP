@@ -1,1 +1,21 @@
-<p>me works!</p>
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <h2>My account</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>{{labels['username']}}</mat-label>
+      <input matInput [formControl]="formControls['username']" (blur)="onBlur('username')">
+      <mat-error *ngIf="formControls['username'].invalid && formControls['username'].touched">{{errorMessages['username']}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{labels['email']}}</mat-label>
+      <input matInput [formControl]="formControls['email']" (blur)="onBlur('email')">
+      <mat-error *ngIf="formControls['email'].invalid && formControls['email'].touched">{{errorMessages['email']}}</mat-error>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="formControls['email'].invalid || formControls['username'].invalid" mat-raised-button color="primary">Sauvegarder</button>
+  </form>
+  <div class="flex">
+    <button type="button" mat-button color="warn" (click)="onLogout()">Logout</button>
+  </div>
+</div>

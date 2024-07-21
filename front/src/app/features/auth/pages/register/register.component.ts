@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
 import {RegisterRequest} from "../../../../core/interfaces/auth/register.request";
 import {AuthenticationService} from "../../services/authentication.service";
+import {APP_CONSTANTS} from "../../../../shared/constants";
 
 @Component({
   selector: 'app-register',
@@ -35,12 +36,6 @@ import {AuthenticationService} from "../../services/authentication.service";
  * @version 1.0
  */
 export class RegisterComponent implements OnDestroy {
-
-  private readonly PASSWORD_VALIDATION_RULE: string = 'a password with at least 8 characters, including 1 uppercase letter, ' +
-    '1 lowercase letter, 1 number and 1 special character';
-  private readonly USERNAME_VALIDATION_RULE: string = 'a username with at least 4 characters';
-
-  private readonly EMAIL_VALIDATION_RULE: string = "a valid email address"
 
   // AuthService subscription
   private authServiceSubscription: Subscription | undefined;
@@ -74,9 +69,9 @@ export class RegisterComponent implements OnDestroy {
    *                              including at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character.
    */
   controlNames: { [key: string]: string } = {
-    username: this.USERNAME_VALIDATION_RULE,
-    email: this.EMAIL_VALIDATION_RULE,
-    password: this.PASSWORD_VALIDATION_RULE,
+    username: APP_CONSTANTS.VALIDATION_MESSAGES.USERNAME_VALIDATION_RULE,
+    email: APP_CONSTANTS.VALIDATION_MESSAGES.EMAIL_VALIDATION_RULE,
+    password: APP_CONSTANTS.VALIDATION_MESSAGES.PASSWORD_VALIDATION_RULE,
   };
 
   /**
@@ -181,13 +176,13 @@ export class RegisterComponent implements OnDestroy {
     if (control.hasError('required')) {
       this.errorMessages[controlName] = `Please enter ${this.controlNames[controlName]}`;
     } else if (control.hasError('minlength')) {
-      if (controlName == "username") this.errorMessages[controlName] = this.USERNAME_VALIDATION_RULE;
+      if (controlName == "username") this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.USERNAME_VALIDATION_RULE;
     }
     else if (control.hasError('email')) {
-      this.errorMessages[controlName] = this.EMAIL_VALIDATION_RULE;
+      this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.EMAIL_VALIDATION_RULE;
     }
     else if (control.hasError('pattern')) {
-      this.errorMessages[controlName] = this.PASSWORD_VALIDATION_RULE;
+      this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.PASSWORD_VALIDATION_RULE;
     } else {
       this.errorMessages[controlName] = '';
     }
