@@ -3,7 +3,9 @@ import {NgClass, NgIf} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MaterialModule} from "../../../../shared/material.modules";
 import {Subscription} from "rxjs";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {RegisterRequest} from "../../../../core/interfaces/auth/register.request";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-register',
@@ -106,24 +108,66 @@ export class RegisterComponent implements OnDestroy {
     password: '',
   };
 
+  /**
+   * Constructs a new instance of the class.
+   *
+   * @param {AuthenticationService} authService - The authentication service responsible for authenticating and authorizing users.
+   * @param {Router} router - The router service used for navigation in the application.
+   */
+  constructor(private authService: AuthenticationService,
+              private router: Router) {}
+
+  /**
+   * Handles form submission
+   *
+   * This method is called when a form submission event occurs. It checks if the username, email,
+   * and password fields are valid. If all three fields are valid, it creates a RegisterRequest
+   * object using the values from the form fields and calls the "handleRegistration" method.
+   *
+   * @returns {void} No return value
+   */
   onSubmit(): void {
     if (this.formControls["username"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
-      // const registerRequest: RegisterRequest = {
-      //   username: this.formControls['username'].value,
-      //   email: this.formControls['email'].value,
-      //   password: this.formControls['password'].value,
-      // };
-      // this.authServiceSubscription = this.authService.register(registerRequest).subscribe({
-      //   next: () => {
-      //     this.router.navigate(['/posts']).then(
-      //       () => {}
-      //     );
-      //   },
-      //   error: error => {
-      //     throw error;
-      //   }
-      // });
-    }}
+
+      const registerRequest: RegisterRequest = this.createRegisterRequest();
+      this.handleRegistration(registerRequest);
+
+    }
+  }
+
+  /**
+   * Creates a register request object with the provided form input values.
+   *
+   * @private
+   * @return {RegisterRequest} - Register request object containing username, email, and password.
+   */
+  private createRegisterRequest(): RegisterRequest {
+    return {
+      username: this.formControls['username'].value,
+      email: this.formControls['email'].value,
+      password: this.formControls['password'].value,
+    };
+  }
+
+  /**
+   * Handles the registration request.
+   *
+   * @param {RegisterRequest} registerRequest - The registration request object containing user details.
+   *
+   * @private
+   *
+   * @return {void}
+   */
+  private handleRegistration(registerRequest: RegisterRequest): void {
+    this.authServiceSubscription = this.authService.register(registerRequest).subscribe({
+      next: () => {
+        this.router.navigate(['/posts']).then(() => {});
+      },
+      error: error => {
+        throw error;
+      }
+    });
+  }
 
   /**
    * Function to handle onBlur event of form control

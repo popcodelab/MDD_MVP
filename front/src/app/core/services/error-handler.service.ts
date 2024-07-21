@@ -18,7 +18,7 @@ export class ErrorHandlerService {
       if (error.status === 401) {
         message = 'You must be authenticated';
       } else {
-        message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.message;
+        message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.error.error;
       }
     } else {
       message = this.AN_ERROR_HAS_OCCURRED + ' : '  + error.message;
