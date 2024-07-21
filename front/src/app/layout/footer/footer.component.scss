@@ -1,0 +1,25 @@
+.footer-mat-toolbar {
+  max-height: 1vw;
+  font-size: 1vw;
+  color: #c9c9c9;
+  padding: 1em;
+}
+
+.footer-container {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+#footer-a-author {
+  font-size: 0.7em;
+  float:right;
+}

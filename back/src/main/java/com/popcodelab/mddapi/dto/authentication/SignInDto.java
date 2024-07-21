@@ -1,4 +1,4 @@
-package com.popcodelab.mddapi.dto;
+package com.popcodelab.mddapi.dto.authentication;
 
 import lombok.Data;
 

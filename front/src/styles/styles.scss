@@ -1,4 +1,176 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Theming */
+
+@use '@angular/material' as mat;
+@use './palettes.scss' as palettes;
+
+
+// Define colors
+$mdd-primary: mat.define-palette(palettes.$mdd-primary-palette, 400);
+$mdd-accent: mat.define-palette(palettes.$mdd-accent-palette, 400);
+$mdd-warn: mat.define-palette(palettes.$mdd-warn-palette, 900);
+
+
+// Define theme
+$mdd-theme: mat.define-light-theme((
+  color: (
+    primary: $mdd-primary,
+    accent: $mdd-accent,
+    warn: $mdd-warn,
+  )
+));
+
+$primary-color: mat.get-theme-color($mdd-theme, primary);
+$accent-color: mat.get-theme-color($mdd-theme, accent);
+$warn-color: mat.get-theme-color($mdd-theme, warn);
+
+// Apply the theme to all components
+@include mat.all-component-themes($mdd-theme);
+
+:root {
+  --primary-color: #{$primary-color};
+  --accent-color: #{$accent-color};
+  --warn-color: #{$warn-color};
+  --gray-50: #F5F5F5; // Background of theme and article cards
+  --gray-100: #EEEEEE; // Background of comment
+  --gray-200: #D9D9D9; // User avatar background
+  --gray-700: #939393; // Placeholder text
+  --mat-toolbar-standard-height: 94px;
+  --mat-toolbar-mobile-height: 62px;
+  --content-standard-height: calc(100vh - var(--mat-toolbar-standard-height));
+  --content-mobile-height: calc(100vh - var(--mat-toolbar-mobile-height));
+}
+
+::placeholder {
+  color: var(--gray-700);
+}
+
+/* Reset */
+
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+//html, body {
+//  //noinspection CssOverwrittenProperties
+//  height: 100vh;
+//  //noinspection CssOverwrittenProperties
+//  height: 100svh;
+//  //noinspection CssOverwrittenProperties
+//  height: 100dvh;
+//  margin: 0;
+//}
+
+body {
+  margin: 0;
+  font-family: Roboto,
+  "inter",
+  "Helvetica Neue",
+  sans-serif;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+//
+//address {
+//  font-style: normal;
+//}
+//
+ul {
+  list-style: none;
+  padding: 0;
+}
+//
+//img {
+//  display: block;
+//  max-width: 100%;
+//  height: auto;
+//}
+//
+///* Screen reader utilities */
+//.sr-only {
+//  position: absolute;
+//  width: 1px;
+//  height: 1px;
+//  padding: 0;
+//  margin: -1px;
+//  overflow: hidden;
+//  clip: rect(0, 0, 0, 0);
+//  white-space: nowrap;
+//  border-width: 0;
+//}
+
+/* Position utilities */
+//.relative {
+//  position: relative;
+//}
+//
+//.absolute {
+//  position: absolute;
+//}
+//
+//.fixed {
+//  position: fixed;
+//}
+//
+//.sticky {
+//  position: sticky;
+//}
+//
+///** Padding utilities */
+//.p-1 {
+//  padding: 1rem;
+//}
+
+/* Grid utilities */
+//Inspiration for auto-grid from Kevin Powell : https://youtu.be/p3_xN2Zp1TY?si=BTdcz5FLdSmwwzZg&t=163
+//.auto-grid {
+//  --min-column-size: 20rem;
+//  --minmax-min: min(var(--min-column-size), 100%);
+//  --minmax-max: 1fr;
+//  display: grid;
+//  grid-template-columns: repeat(auto-fit, minmax(var(--minmax-min), var(--minmax-max)));
+//  gap: 1rem;
+//}
+
+/** Flex utilities */
+.flex {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  justify-content:normal;
+}
+
+/** Form errors utilities */
+mat-error {
+  font-size: 0.75rem;
+}
+
+/** Link */
+a:hover {
+  color: var(--primary-color);
+}
+
+/** MatSidenav */
+.mat-sidenav-content {
+    min-height: 100%;
+    padding:1rem;
+}
+
+/** Login and Register forms */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: calc(min(40ch, 100vw));
+  margin-inline: auto;
+  gap: 1.5rem;
+}
+

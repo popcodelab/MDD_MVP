@@ -1,0 +1,82 @@
+$mdd-primary-palette: (
+  50: #ece9f6,
+  100: #cfc8ea,
+  200: #b0a4dd,
+  300: #907fd0,
+  400: #7763c5, // Primary color
+  500: #5e49bb,
+  600: #5444b4,
+  700: #473cab,
+  800: #3a36a2,
+  900: #242b94,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$mdd-accent-palette: (
+  50: #ebe7f8,
+  100: #ccc5ed,
+  200: #ab9fe2,
+  300: #8879d8,
+  400: #6b5ccf, // Accent color
+  500: #4c41c6,
+  600: #413dc0,
+  700: #2f35b7,
+  800: #182faf,
+  900: #0024a1,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$mdd-warn-palette: (
+  50: #FDE9EC,
+  100: #F9C9CC,
+  200: #E59391,
+  300: #D76A67,
+  400: #DE4943,
+  500: #DF3827,
+  600: #D12E27,
+  700: #C02322,
+  800: #B31C1B,
+  900: #A40F0F, // Warn color
+  A100: #DF3827,
+  A200: #DF3827,
+  A400: #DF3827,
+  A700: #DF3827,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);

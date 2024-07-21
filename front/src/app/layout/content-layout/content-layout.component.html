@@ -1,0 +1,37 @@
+  <app-navbar></app-navbar>
+<mat-sidenav-container>
+  <mat-sidenav  #matsidenav role="navigation" position="end" mode="over"   [ngClass]="{'open': isMatSidenavOpened}" >
+    <ul class="flex flex-col">
+      <li><a routerLink="/articles" routerLinkActive="active" ariaCurrentWhenActive="page"
+             (click)="closeMatSidenav()">Articles</a></li>
+      <li><a routerLink="/themes" routerLinkActive="active" ariaCurrentWhenActive="page"
+             [routerLinkActiveOptions]="{exact: true}"
+             (click)="closeMatSidenav()">Thèmes</a></li>
+      <li>
+        <a
+          routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
+          (click)="closeMatSidenav()"
+          style="
+             --justify: center;
+            display: flex;
+            flex-direction: column;
+            align-items:center;">
+          <mat-icon aria-hidden="false" aria-label="profile" fontIcon="account_box" class="avatar"
+                    style="font-size: 48px;
+                         width: 48px;
+                         height: 48px;">
+          </mat-icon>
+        </a>
+      </li>
+    </ul>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content class="mat-sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<footer>
+  <app-footer></app-footer>
+</footer>
+
