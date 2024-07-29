@@ -52,15 +52,6 @@ $warn-color: mat.get-theme-color($mdd-theme, warn);
   box-sizing: border-box;
 }
 
-//html, body {
-//  //noinspection CssOverwrittenProperties
-//  height: 100vh;
-//  //noinspection CssOverwrittenProperties
-//  height: 100svh;
-//  //noinspection CssOverwrittenProperties
-//  height: 100dvh;
-//  margin: 0;
-//}
 
 body {
   margin: 0;
@@ -70,6 +61,7 @@ body {
   sans-serif;
 }
 
+/** Links */
 a, button {
   cursor: pointer;
 }
@@ -78,74 +70,10 @@ a {
   text-decoration: none;
   color: inherit;
 }
-//
-//address {
-//  font-style: normal;
-//}
-//
+
 ul {
   list-style: none;
   padding: 0;
-}
-//
-//img {
-//  display: block;
-//  max-width: 100%;
-//  height: auto;
-//}
-//
-///* Screen reader utilities */
-//.sr-only {
-//  position: absolute;
-//  width: 1px;
-//  height: 1px;
-//  padding: 0;
-//  margin: -1px;
-//  overflow: hidden;
-//  clip: rect(0, 0, 0, 0);
-//  white-space: nowrap;
-//  border-width: 0;
-//}
-
-/* Position utilities */
-//.relative {
-//  position: relative;
-//}
-//
-//.absolute {
-//  position: absolute;
-//}
-//
-//.fixed {
-//  position: fixed;
-//}
-//
-//.sticky {
-//  position: sticky;
-//}
-//
-///** Padding utilities */
-//.p-1 {
-//  padding: 1rem;
-//}
-
-/* Grid utilities */
-//Inspiration for auto-grid from Kevin Powell : https://youtu.be/p3_xN2Zp1TY?si=BTdcz5FLdSmwwzZg&t=163
-//.auto-grid {
-//  --min-column-size: 20rem;
-//  --minmax-min: min(var(--min-column-size), 100%);
-//  --minmax-max: 1fr;
-//  display: grid;
-//  grid-template-columns: repeat(auto-fit, minmax(var(--minmax-min), var(--minmax-max)));
-//  gap: 1rem;
-//}
-
-/** Flex utilities */
-.flex {
-  display: flex;
-  gap: 1rem;
-  flex-direction: row;
-  justify-content:normal;
 }
 
 /** Form errors utilities */

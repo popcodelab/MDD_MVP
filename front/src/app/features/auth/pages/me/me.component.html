@@ -20,9 +20,17 @@
       <button type="submit" [disabled]="formControls['email'].invalid || formControls['username'].invalid"
               mat-raised-button color="primary">Update
       </button>
+      <div class="auth-form">
+        <button type="button" mat-button color="warn" (click)="onLogout()">Logout</button>
+      </div>
     </form>
-    <div class="flex">
-      <button type="button" mat-button color="warn" (click)="onLogout()">Logout</button>
+
+  </section>
+  <section>
+
+    <hr fxFill>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h2>User topic subscriptions</h2>
     </div>
   </section>
 </div>

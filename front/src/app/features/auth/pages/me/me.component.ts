@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 import {SessionService} from "../../services/session.service";
 import {UserService} from "../../services/api/user.service";
 import {MatDivider} from "@angular/material/divider";
+import {Topic} from "../../../topics/interfaces/topic";
 
 @Component({
   selector: 'app-me',
@@ -31,8 +32,11 @@ import {MatDivider} from "@angular/material/divider";
 })
 export class MeComponent implements OnInit, OnDestroy {
 
-  loggedUser: User | null = null;
+
   private userSubscription: Subscription | null = null;
+
+  loggedUser: User | null = null;
+  subscribedTopics: Topic[] = [];
 
   formControls: { [key: string]: FormControl } = {
     username: new FormControl('', [
