@@ -4,11 +4,11 @@ mat-card-title {
 }
 
 mat-card-content {
-  font-size: clamp(0.75rem, 1.5vw, 1.75rem);
+  font-size: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
 .topic-card-button{
-  font-size: clamp(0.75rem, 1.5vw, 1.75rem);
+  font-size: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
 mat-card-actions {
