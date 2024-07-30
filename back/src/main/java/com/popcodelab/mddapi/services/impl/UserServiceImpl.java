@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
     /**
      * ModelMapper instance to map a Dto to an Entity and vice versa.
      */
-    @Autowired
     private ModelMapper modelMapper;
 
     /**

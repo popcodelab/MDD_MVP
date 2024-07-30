@@ -2,6 +2,11 @@ package com.popcodelab.mddapi.repositories;
 
 import com.popcodelab.mddapi.entities.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * The TopicRepository interface is responsible for providing database operations
@@ -17,5 +22,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Pignon Pierre-Olivier
  * @version 1.0
  */
+@Repository
 public interface TopicRepository extends JpaRepository<Topic, Long> {
+
+    @Query("SELECT t FROM Topic t WHERE t.id IN (:ids)")
+    List<Topic> findByIds(@Param("ids") List<Long> ids);
 }
