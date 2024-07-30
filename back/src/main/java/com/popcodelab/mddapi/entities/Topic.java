@@ -24,10 +24,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class Topic extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 254)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 254)
     private String description;
 
 }
