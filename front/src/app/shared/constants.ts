@@ -10,9 +10,9 @@
  */
 export const APP_CONSTANTS = {
   VALIDATION_MESSAGES: {
-    PASSWORD_VALIDATION_RULE : 'a password with at least 8 characters, including 1 uppercase letter, ' +
-    '1 lowercase letter, 1 number and 1 special character',
-    USERNAME_VALIDATION_RULE : 'a username with at least 4 characters',
-    EMAIL_VALIDATION_RULE : "a valid email address"
+    PASSWORD_VALIDATION_RULE: 'a password with at least 8 characters, including 1 uppercase letter, ' +
+      '1 lowercase letter, 1 number and 1 special character',
+    USERNAME_VALIDATION_RULE: 'a username with at least 4 characters',
+    EMAIL_VALIDATION_RULE: "a valid email address"
   }
 }

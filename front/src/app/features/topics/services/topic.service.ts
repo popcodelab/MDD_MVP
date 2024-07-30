@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Topic} from "../interfaces/topic";
@@ -30,7 +30,8 @@ export class TopicService {
    *
    * @param {HttpClient} httpClient - The HttpClient instance to be used for making HTTP requests.
    */
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   /**
    * Retrieves all topics from the specified API URL using an HTTP GET request.

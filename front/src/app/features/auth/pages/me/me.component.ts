@@ -47,7 +47,6 @@ export class MeComponent implements OnInit, OnDestroy {
   subscribedTopics: Topic[] = [];
 
 
-
   formControls: { [key: string]: FormControl } = {
     username: new FormControl('', [
       Validators.required,
@@ -74,11 +73,12 @@ export class MeComponent implements OnInit, OnDestroy {
 
   constructor(private sessionService: SessionService,
               private userService: UserService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
-  onUnsubscribeClick(topicId: number): void{
+  onUnsubscribeClick(topicId: number): void {
     this.userService.unsubscribeTopic(topicId).subscribe(
-      (user: User) =>{
+      (user: User) => {
         this.sessionService.updateUser(user);
       }
     );
@@ -119,8 +119,7 @@ export class MeComponent implements OnInit, OnDestroy {
   }
 
 
-
-  onLogout(): void {
+  onLogoutClick(): void {
     this.sessionService.logout();
     this.router.navigate(['/login'])
   }

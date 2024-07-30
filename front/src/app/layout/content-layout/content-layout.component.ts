@@ -1,14 +1,11 @@
 import {AfterViewInit, Component, ViewChild} from "@angular/core";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
-import {MatNavList} from "@angular/material/list";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {FooterComponent} from "../footer/footer.component";
 import {NgClass} from "@angular/common";
 import {MatSidenavService} from "../../core/services/mat-sidenav.service";
-
 
 
 @Component({
@@ -77,7 +74,7 @@ export class ContentLayoutComponent implements AfterViewInit {
    *
    * @return {void}
    */
-  public closeMatSidenav():void {
+  public closeMatSidenav(): void {
     this.matSidenavService.closeMatSidenav();
   }
 

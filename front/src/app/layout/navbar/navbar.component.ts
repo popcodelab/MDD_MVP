@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatSidenavService} from "../../core/services/mat-sidenav.service";
 import {MatIcon} from "@angular/material/icon";
@@ -30,9 +30,10 @@ import {NgOptimizedImage} from "@angular/common";
  */
 export class NavbarComponent {
 
-  constructor(private matSidenavService: MatSidenavService) {}
+  constructor(private matSidenavService: MatSidenavService) {
+  }
 
-  public toggleMatSidenav():void {
+  public toggleMatSidenav(): void {
     this.matSidenavService.toggleMatSidenav();
   }
 

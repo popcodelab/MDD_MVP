@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 
 @Injectable({

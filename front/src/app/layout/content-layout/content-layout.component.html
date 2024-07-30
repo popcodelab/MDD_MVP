@@ -1,6 +1,6 @@
-  <app-navbar></app-navbar>
+<app-navbar></app-navbar>
 <mat-sidenav-container>
-  <mat-sidenav  #matsidenav role="navigation" position="end" mode="over"   [ngClass]="{'open': isMatSidenavOpened}" >
+  <mat-sidenav #matsidenav role="navigation" position="end" mode="over" [ngClass]="{'open': isMatSidenavOpened}">
     <ul class="flex flex-col">
       <li><a routerLink="/articles" routerLinkActive="active" ariaCurrentWhenActive="page"
              (click)="closeMatSidenav()">Articles</a></li>

@@ -1,33 +1,37 @@
 <div>
-    <a routerLink="/" >
-      <mat-icon aria-label="Back" fontIcon="keyboard_double_arrow_left"></mat-icon>
-    </a>
+  <a routerLink="/">
+    <mat-icon aria-label="Back" fontIcon="keyboard_double_arrow_left"></mat-icon>
+  </a>
 
   <form (ngSubmit)="onSubmit()" class="auth-form">
     <h2>Register</h2>
 
     <mat-form-field appearance="outline">
-      <mat-label>{{labels['username']}}</mat-label>
+      <mat-label>{{ labels['username'] }}</mat-label>
       <input matInput [formControl]="formControls['username']" (blur)="onBlur('username')">
       <mat-error *ngIf="formControls['username'].invalid && formControls['username'].touched">
-        {{errorMessages['username']}}</mat-error>
+        {{ errorMessages['username'] }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>{{labels['email']}}</mat-label>
+      <mat-label>{{ labels['email'] }}</mat-label>
       <input type="email" matInput [formControl]="formControls['email']" (blur)="onBlur('email')">
       <mat-error *ngIf="formControls['email'].invalid && formControls['email'].touched">
-        {{errorMessages['email']}}</mat-error>
+        {{ errorMessages['email'] }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>{{labels['password']}}</mat-label>
+      <mat-label>{{ labels['password'] }}</mat-label>
       <input matInput [formControl]="formControls['password']" (blur)="onBlur('password')">
       <mat-error *ngIf="formControls['password'].invalid && formControls['password'].touched">
-        {{errorMessages['password']}}</mat-error>
+        {{ errorMessages['password'] }}
+      </mat-error>
     </mat-form-field>
 
     <button type="submit" [disabled]="formControls['username'].invalid || formControls['email'].invalid
-    || formControls['password'].invalid" mat-raised-button color="primary">Register</button>
+    || formControls['password'].invalid" mat-raised-button color="primary">Register
+    </button>
   </form>
 </div>

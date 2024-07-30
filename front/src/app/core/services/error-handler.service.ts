@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SnackBarService} from "./snack-bar.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -9,7 +9,8 @@ export class ErrorHandlerService {
 
   private readonly AN_ERROR_HAS_OCCURRED: string = "An error has occurred";
 
-  constructor(private snackBarService: SnackBarService) { }
+  constructor(private snackBarService: SnackBarService) {
+  }
 
   handleError(error: Error | HttpErrorResponse) {
     let message: string;
@@ -21,7 +22,7 @@ export class ErrorHandlerService {
         message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.error.error;
       }
     } else {
-      message = this.AN_ERROR_HAS_OCCURRED + ' : '  + error.message;
+      message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.message;
     }
 
     this.snackBarService.openSnackBar(message);

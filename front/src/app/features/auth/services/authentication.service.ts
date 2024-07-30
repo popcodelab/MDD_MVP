@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest} from "../../../core/interfaces/auth/login.request";
@@ -29,7 +29,8 @@ export class AuthenticationService {
    * Constructs a new instance of the class.
    * @param {HttpClient} http - The HTTP client instance to use for making HTTP requests.
    */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Logs in a user using the provided login request.

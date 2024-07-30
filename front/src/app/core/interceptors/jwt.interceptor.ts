@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 /**
  * Intercepts HTTP requests and adds authorization token to the request headers.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class JwtInterceptor implements HttpInterceptor {
 
 
@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
    * @param {HttpHandler} next - The handler for the intercepted request.
    * @return {Observable<HttpEvent<any>>} - An Observable that represents the next event in the HTTP stream.
    */
-  public intercept(request: HttpRequest<any>, next: HttpHandler){
+  public intercept(request: HttpRequest<any>, next: HttpHandler) {
     console.log("JwtInterceptor - intercept method called");
     if (this.isExcludedRequest(request)) {
       return next.handle(request);
@@ -26,7 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
       request = this.addAuthorizationHeader(request, token);
       return next.handle(request);
     } else {
-      return throwError(() => new HttpErrorResponse({ status: 401, statusText: 'You must be authenticated' }));
+      return throwError(() => new HttpErrorResponse({status: 401, statusText: 'You must be authenticated'}));
     }
   }
 

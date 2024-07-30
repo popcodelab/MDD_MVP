@@ -1,10 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import {NgClass, NgIf} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Subject, Subscription, takeUntil} from "rxjs";
+import {Subscription} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
-import {MatFormField, MatLabel, MatError} from "@angular/material/form-field";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {LoginRequest} from "../../../../core/interfaces/auth/login.request";

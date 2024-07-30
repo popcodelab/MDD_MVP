@@ -2,8 +2,8 @@
   height: var(--content-standard-height);
 }
 
-@media (width < 599px){
-  mat-sidenav-content.main{
+@media (width < 599px) {
+  mat-sidenav-content.main {
     height: var(--content-mobile-height);
   }
 }
@@ -16,6 +16,7 @@
 
 a.active {
   color: var(--accent-color);
+
   & > .avatar {
     background-color: var(--accent-color);
   }
@@ -24,6 +25,7 @@ a.active {
 a[routerLinkActive="active"]:hover {
   opacity: 75%;
   color: var(--accent-color);
+
   & > .avatar {
     background-color: var(--accent-color);
   }
@@ -34,10 +36,12 @@ mat-sidenav ul.flex-col {
   margin: 0;
   height: 100%;
   padding: 1.25rem 2rem;
+
   & > li:not(:last-of-type) {
     font-size: 1.25rem;
     font-weight: 500;
   }
+
   & > li:last-of-type {
     margin-top: auto;
   }

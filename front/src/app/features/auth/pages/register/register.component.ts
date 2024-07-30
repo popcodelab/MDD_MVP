@@ -110,7 +110,8 @@ export class RegisterComponent implements OnDestroy {
    * @param {Router} router - The router service used for navigation in the application.
    */
   constructor(private authService: AuthenticationService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   /**
    * Handles form submission
@@ -154,7 +155,8 @@ export class RegisterComponent implements OnDestroy {
   private handleRegistration(registerRequest: RegisterRequest): void {
     this.authServiceSubscription = this.authService.register(registerRequest).subscribe({
       next: () => {
-        this.router.navigate(['/posts']).then(() => {});
+        this.router.navigate(['/posts']).then(() => {
+        });
       },
       error: error => {
         throw error;
@@ -175,11 +177,9 @@ export class RegisterComponent implements OnDestroy {
       this.errorMessages[controlName] = `Please enter ${this.controlNames[controlName]}`;
     } else if (control.hasError('minlength')) {
       if (controlName == "username") this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.USERNAME_VALIDATION_RULE;
-    }
-    else if (control.hasError('email')) {
+    } else if (control.hasError('email')) {
       this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.EMAIL_VALIDATION_RULE;
-    }
-    else if (control.hasError('pattern')) {
+    } else if (control.hasError('pattern')) {
       this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.PASSWORD_VALIDATION_RULE;
     } else {
       this.errorMessages[controlName] = '';
@@ -193,7 +193,7 @@ export class RegisterComponent implements OnDestroy {
    * @return {void} - Does not return anything.
    */
   ngOnDestroy(): void {
-    if (this.authServiceSubscription){
+    if (this.authServiceSubscription) {
       this.authServiceSubscription.unsubscribe();
     }
   }

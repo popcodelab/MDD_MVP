@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, firstValueFrom, Observable} from "rxjs";
-import {Router} from "@angular/router";
 import {User} from "../interfaces/User";
 import {Topic} from "../../topics/interfaces/topic";
 import {UserService} from "./api/user.service";
@@ -11,10 +10,10 @@ import {TopicService} from "../../topics/services/topic.service";
 })
 export class SessionService {
 
-  private _sessionUser: BehaviorSubject<User | null > = new BehaviorSubject<User | null>(null);
+  private _sessionUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   public sessionUser$: Observable<User | null> = this._sessionUser.asObservable();
 
-  private _topicSubscriptions:BehaviorSubject<Topic[]> = new BehaviorSubject<Topic[]>([]);
+  private _topicSubscriptions: BehaviorSubject<Topic[]> = new BehaviorSubject<Topic[]>([]);
   public topicSubscriptions$: Observable<Topic[]> = this._topicSubscriptions.asObservable();
 
   private _isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -22,7 +21,8 @@ export class SessionService {
 
   constructor(private userService: UserService,
               private topicService: TopicService) {
-    this.setUpUserSession().then(r => {});
+    this.setUpUserSession().then(r => {
+    });
   }
 
   public login(token: string): void {
@@ -31,8 +31,8 @@ export class SessionService {
     this.setUpUserSession();
   }
 
-  private async setUpUserSession(): Promise<void> {
-    const token: string | null= localStorage.getItem('token');
+  public async setUpUserSession(): Promise<void> {
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       try {
         const user: void | User = await firstValueFrom(

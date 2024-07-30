@@ -1,9 +1,9 @@
 import {ErrorHandler, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './pages/home/home.component';
 import {MaterialModule} from "./shared/material.modules";
 import {NgOptimizedImage} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -43,4 +43,5 @@ import {ErrorHandlerService} from "./core/services/error-handler.service";
  * - Does not provide any additional services or providers.
  * - Sets the AppComponent as the bootstrap component for the application.
  */
-export class AppModule {}
+export class AppModule {
+}

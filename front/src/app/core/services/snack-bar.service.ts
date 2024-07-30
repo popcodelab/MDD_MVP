@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {environment} from "../../../environments/environment";
 import {ConfigurationService} from "./configuration.service";
 
 /**
