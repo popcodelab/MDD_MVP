@@ -4,7 +4,7 @@ import {MatInput} from "@angular/material/input";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {APP_CONSTANTS} from "../../../../shared/constants";
 import {MatButton} from "@angular/material/button";
-import {NgIf} from "@angular/common";
+import {NgIf, TitleCasePipe} from "@angular/common";
 import {Subscription} from "rxjs";
 import {User} from "../../interfaces/User";
 import {Router} from "@angular/router";
@@ -31,10 +31,11 @@ import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} fr
     MatCardContent,
     MatCardTitle,
     MatCardHeader,
-    MatCard
+    MatCard,
+    TitleCasePipe
   ],
   templateUrl: './me.component.html',
-  styleUrl: './me.component.scss'
+  styleUrls: ['./me.component.scss', '../../../../shared/styles/topic-card-styles.css']
 })
 export class MeComponent implements OnInit, OnDestroy {
 

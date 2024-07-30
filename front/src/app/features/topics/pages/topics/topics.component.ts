@@ -22,7 +22,7 @@ import {TopicService} from "../../services/topic.service";
     NgForOf
   ],
   templateUrl: './topics.component.html',
-  styleUrl: './topics.component.scss'
+  styleUrls: ['./topics.component.scss', '../../../../shared/styles/topic-card-styles.css']
 })
 export class TopicsComponent implements OnInit, OnDestroy {
 

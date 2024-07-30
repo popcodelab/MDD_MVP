@@ -1,0 +1,18 @@
+mat-card-title {
+  font-size: clamp(1rem, 1.75vw, 2rem);
+  font-weight: bold;
+}
+
+mat-card-content {
+  font-size: clamp(0.75rem, 1.5vw, 1.75rem);
+}
+
+.topic-card-button{
+  font-size: clamp(0.75rem, 1.5vw, 1.75rem);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically if the container has a height */
+}
