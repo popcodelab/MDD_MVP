@@ -72,11 +72,25 @@ export class SessionService {
     throw error;
   }
 
+  /**
+   * Update the session user and topic subscriptions for the modified user.
+   *
+   * @param {User} modifiedUser - The modified user object.
+   *
+   * @return {void}
+   */
   public updateUser(modifiedUser: User): void {
     this._sessionUser.next(modifiedUser);
     this.updateUserTopicSubscriptions(modifiedUser);
   }
 
+  /**
+   * Updates the topic subscriptions for a given user.
+   *
+   * @param {User} modifiedUser The modified user object.
+   * @private
+   * @return {void}
+   */
   private updateUserTopicSubscriptions(modifiedUser: User): void {
     this.topicService.getAllTopics().subscribe((topic: Topic[]) => {
       const topicSubscriptions: Topic[] = topic.filter((topic: Topic) => modifiedUser.subscribedTopicIds.includes(topic.id));

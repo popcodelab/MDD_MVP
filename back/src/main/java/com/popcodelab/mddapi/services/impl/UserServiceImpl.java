@@ -14,6 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The UserServiceImpl class is an implementation of the UserService interface.
  * It provides methods for retrieving information about the logged user.
@@ -32,7 +35,6 @@ public class UserServiceImpl implements UserService {
      * The topicRepository is an instance of the TopicRepository interface that is responsible for providing database operations
      * for the Topic entity in the system. It is used to interact with the database and perform CRUD (Create, Read, Update, Delete) operations
      * on Topic entities.
-     *
      */
     private final TopicRepository topicRepository;
 
@@ -77,8 +79,8 @@ public class UserServiceImpl implements UserService {
     /**
      * Unsubscribes a user from a topic.
      *
-     * @param topicId            the ID of the topic to unsubscribe from
-     * @param authentication    the authentication object of the logged-in user
+     * @param topicId        the ID of the topic to unsubscribe from
+     * @param authentication the authentication object of the logged-in user
      * @return the UserDto object representing the logged-in user after the unsubscription
      */
     public UserDto unsubscribesTopic(final Long topicId, final Authentication authentication) {
@@ -117,7 +119,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Unsubscribes a user from a topic.
      *
-     * @param user The User object representing the user who wants to unsubscribe.
+     * @param user    The User object representing the user who wants to unsubscribe.
      * @param topicId The ID of the topic the user wishes to unsubscribe from.
      * @throws IllegalArgumentException If the user is not currently subscribed to the specified topic.
      */
@@ -128,4 +130,52 @@ public class UserServiceImpl implements UserService {
         user.getSubscribedTopicIds().remove(topicId);
     }
 
+    /**
+     * Subscribes the logged-in user to a given topic.
+     *
+     * @param topicId        The ID of the topic to subscribe to.
+     * @param authentication The authentication object representing the logged-in user.
+     * @return The UserDto representing the subscribed user.
+     * @throws EntityNotFoundException if the user is not found.
+     */
+    public UserDto subscribeToTopic(final Long topicId, final Authentication authentication) {
+        UserDto currentUserDTO = getLoggedUser(authentication);
+        User user = userRepository.findById(currentUserDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        validateTopicExists(topicId);
+        validateUserAlreadySubscribed(user, topicId);
+
+        List<Long> subscribedTopicIds = new ArrayList<>(user.getSubscribedTopicIds());
+        subscribedTopicIds.add(topicId);
+        user.setSubscribedTopicIds(subscribedTopicIds);
+
+        userRepository.save(user);
+        log.debug("The user {} has subscribed to the topic Id : {}", user.getUsername(), topicId);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    /**
+     * Validates if a topic exists based on the given topicId.
+     *
+     * @param topicId the ID of the topic to validate
+     * @throws EntityNotFoundException if the topic does not exist
+     */
+    private void validateTopicExists(Long topicId) {
+        if (!topicRepository.existsById(topicId)) {
+            throw new EntityNotFoundException("Topic not found");
+        }
+    }
+
+    /**
+     * Validates whether the user has already subscribed to a given topic.
+     *
+     * @param user    the user object representing the user
+     * @param topicId the topic ID to check if the user is subscribed to
+     * @throws IllegalArgumentException if the user is already subscribed to the specified topic
+     */
+    private void validateUserAlreadySubscribed(User user, Long topicId) {
+        if (user.getSubscribedTopicIds().contains(topicId)) {
+            throw new IllegalArgumentException("User has already subscribed to this topic");
+        }
+    }
 }

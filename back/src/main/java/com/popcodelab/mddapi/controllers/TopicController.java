@@ -31,11 +31,11 @@ public class TopicController {
     /**
      * The TopicController class is responsible for handling requests related to topics.
      * It provides an endpoint to retrieve all the topics.
-     *
+     * <p>
      * This class is annotated with @RestController, which marks it as a controller that handles
      * RESTful requests and responses. It is also annotated with @RequestMapping("/api/topics"),
      * which specifies the base URL for all endpoints in this controller.
-     *
+     * <p>
      * This class depends on the TopicService interface to retrieve the topics data. The dependency
      * is injected through the constructor using the @param tag.
      */

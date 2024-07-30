@@ -50,7 +50,7 @@ export class UserService {
    * @return {Observable<User>} - An observable that emits the subscribed user.
    */
   public subscribeTopic(topicId: number): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/topics/${topicId}`, {});
+    return this.http.post<User>(`${this.apiUrl}/topic/${topicId}`, {});
   }
 
   /**

@@ -68,7 +68,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * @param signInDto The SignInDto object containing the user's email or username and password.
      * @return The authenticated user's authentication object.
      * @throws UsernameNotFoundException If the user is not found in the database.
-     * @throws BadCredentialsException If the provided credentials are invalid.
+     * @throws BadCredentialsException   If the provided credentials are invalid.
      */
     public Authentication authenticateUser(final SignInDto signInDto) {
         log.debug("Authenticate user : {}", signInDto.getEmailOrUsername());

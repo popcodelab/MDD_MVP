@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * The TopicDto class represents a data transfer object for a topic.
  * It contains information such as the topic's id, title, and description.
- *
+ * <p>
  * This class is annotated with the @Data and @Builder annotations, which generate
  * getters, setters, equals, hashCode, and toString methods for the class. These
  * annotations also allow for the use of the Builder design pattern to create instances

@@ -20,18 +20,18 @@ public class TopicServiceImpl implements TopicService {
     /**
      * The topicRepository variable is an instance of the TopicRepository interface.
      * It is responsible for providing database operations for the Topic entity in the system.
-     *
+     * <p>
      * The TopicRepository interface extends the JpaRepository interface, which provides basic CRUD operations.
      *
-     * @see TopicRepository
      * @author Pignon Pierre-Olivier
+     * @see TopicRepository
      */
     private final TopicRepository topicRepository;
 
     /**
      * The modelMapper variable is an instance of the ModelMapper class.
      * It is used for mapping between objects of different types.
-     *
+     * <p>
      * This variable is autowired using the @Autowired annotation, which injects an instance
      * of the ModelMapper class from the Spring application context.
      *

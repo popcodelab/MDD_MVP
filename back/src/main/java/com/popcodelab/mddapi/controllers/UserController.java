@@ -67,7 +67,8 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Topic subscription successfully deleted"
+                    description = "User topic subscription successfully deleted",
+                    content = @Content(schema = @Schema(implementation = UserDto.class))
             ),
             @ApiResponse(
                     responseCode = "401",
@@ -84,5 +85,35 @@ public class UserController {
     })
     public UserDto unsubscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
         return userService.unsubscribesTopic(topicId, authentication);
+    }
+
+    @PostMapping("/topic/{topicId}")
+    @Operation(summary = "Creates a new user topic subscription.",
+            description = "Adds a link between a user and a topic subscription")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "User topic subscription successfully created",
+                    content = @Content(schema = @Schema(implementation = UserDto.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request : Invalid topic ID or request body"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized : The request lacks valid authentication credentials"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found : The topic could not be found"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal Server Error : An unexpected error occurred"
+            )
+    })
+    public UserDto subscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
+        return userService.subscribeToTopic(topicId, authentication);
     }
 }

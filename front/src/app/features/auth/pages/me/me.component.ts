@@ -38,14 +38,11 @@ import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} fr
 })
 export class MeComponent implements OnInit, OnDestroy {
 
-
   private userSubscription: Subscription | null = null;
   private topicsSubscription: Subscription | null = null;
 
-
   loggedUser: User | null = null;
   subscribedTopics: Topic[] = [];
-
 
   formControls: { [key: string]: FormControl } = {
     username: new FormControl('', [

@@ -1,1 +1,16 @@
-<p>topics works!</p>
+<h2>User topic subscriptions</h2>
+<hr fxFill>
+<div class="topics-layout">
+  <mat-card *ngFor="let topic of topics" class="card">
+    <mat-card-header>
+      <mat-card-title class="mat-h3">{{ topic.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p >{{ topic.description }}</p>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-raised-button color="primary" [disabled]="hasUserSubscribed(topic.id)"
+              (click)="onSubscribeClick(topic.id)">{{ hasUserSubscribed(topic.id) ? "Subscribed" : "Subscribe" }}</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

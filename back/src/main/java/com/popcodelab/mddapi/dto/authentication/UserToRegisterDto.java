@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class UserToRegisterDto {
     /**
      * The username field represents the username of a user to be registered.
-     *
+     * <p>
      * Constraints:
      * - The username must not be blank.
      * - The username must have a minimum length of 6 characters.
@@ -31,7 +31,7 @@ public class UserToRegisterDto {
     private String username;
     /**
      * The email field represents the email address of a user to be registered.
-     *
+     * <p>
      * Constraints:
      * - The email must not be blank.
      * - The email must be a valid email address.
@@ -41,7 +41,7 @@ public class UserToRegisterDto {
     private String email;
     /**
      * The password field represents the password of a user to be registered.
-     *
+     * <p>
      * Constraints:
      * - The password must not be blank.
      * - The password must have a minimum length of 8 characters.
