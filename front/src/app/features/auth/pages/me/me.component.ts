@@ -12,6 +12,7 @@ import {SessionService} from "../../services/session.service";
 import {UserService} from "../../services/api/user.service";
 import {MatDivider} from "@angular/material/divider";
 import {Topic} from "../../../topics/interfaces/topic";
+import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 
 @Component({
   selector: 'app-me',
@@ -25,7 +26,12 @@ import {Topic} from "../../../topics/interfaces/topic";
     ReactiveFormsModule,
     MatButton,
     NgIf,
-    MatDivider
+    MatDivider,
+    MatCardActions,
+    MatCardContent,
+    MatCardTitle,
+    MatCardHeader,
+    MatCard
   ],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss'
@@ -34,9 +40,13 @@ export class MeComponent implements OnInit, OnDestroy {
 
 
   private userSubscription: Subscription | null = null;
+  private topicsSubscription: Subscription | null = null;
+
 
   loggedUser: User | null = null;
   subscribedTopics: Topic[] = [];
+
+
 
   formControls: { [key: string]: FormControl } = {
     username: new FormControl('', [
@@ -66,12 +76,18 @@ export class MeComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private router: Router) {}
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+  onUnsubscribeClick(topicId: number): void{
+    this.userService.unsubscribeTopic(topicId).subscribe(
+      (user: User) =>{
+        this.sessionService.updateUser(user);
+      }
+    );
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  onBlur(controlName: string): void {
+    const control: FormControl<any> = this.formControls[controlName];
+    control.markAsTouched();
+    this.errorMessages[controlName] = control.hasError('required') ? `Please enter ${this.controlNames[controlName]}` : '';
   }
 
   private isFormValid(): boolean {
@@ -81,32 +97,72 @@ export class MeComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.isFormValid()) {
-      if (this.loggedUser && this.loggedUser.id !== undefined && this.loggedUser.id !== null) {
-        const updatedUser: User = {
-          id: this.loggedUser.id,
-          username: this.formControls['username'].value,
-          email: this.formControls['email'].value,
-          password: this.loggedUser.password,
-          subscribedTopicIds: this.loggedUser.subscribedTopicIds
-        };
-        this.userService.updateUser(updatedUser).subscribe((user) => {
-          this.sessionService.updateUser(user);
-        });
+      if (this.loggedUser && this.loggedUser.id !== undefined) {
+        if (this.loggedUser.id !== null) {
+          const updatedUser: User = {
+            id: this.loggedUser.id,
+            username: this.formControls['username'].value,
+            email: this.formControls['email'].value,
+            password: this.loggedUser.password,
+            subscribedTopicIds: this.loggedUser.subscribedTopicIds
+          };
+          this.userService.updateUser(updatedUser).subscribe((user: User) => {
+            this.sessionService.updateUser(user);
+          });
+        } else {
+          this.sessionService.logout();
+        }
       } else {
         this.sessionService.logout();
       }
     }
   }
 
-  onBlur(controlName: string): void {
-    const control: FormControl<any> = this.formControls[controlName];
-    control.markAsTouched();
-    this.errorMessages[controlName] = control.hasError('required') ? `Please enter ${this.controlNames[controlName]}` : '';
-  }
+
 
   onLogout(): void {
     this.sessionService.logout();
     this.router.navigate(['/login'])
+  }
+
+
+  /**
+   * Lifecycle hook that is called when a component is destroyed.
+   * This method unsubscribes from any active subscriptions to avoid memory leaks.
+   */
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.topicsSubscription) {
+      this.topicsSubscription.unsubscribe();
+    }
+  }
+
+  /**
+   * Initializes the component and sets up subscriptions for user and topics.
+   */
+  ngOnInit(): void {
+    /**
+     * Represents the user's subscription information.
+     */
+    this.userSubscription = this.sessionService.sessionUser$.subscribe((user: User | null) => {
+      this.loggedUser = user;
+      if (this.loggedUser) {
+        console.log('Logged-in user : ', this.loggedUser);
+        this.formControls['username'].setValue(this.loggedUser.username);
+        this.formControls['email'].setValue(this.loggedUser.email);
+      } else {
+        this.formControls['username'].setValue('');
+        this.formControls['email'].setValue('');
+      }
+    });
+    /**
+     * Represents a user's topics subscription.
+     */
+    this.topicsSubscription = this.sessionService.topicSubscriptions$.subscribe((topics: Topic[]) => {
+      this.subscribedTopics = topics;
+    });
   }
 
 }

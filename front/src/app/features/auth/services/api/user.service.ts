@@ -59,6 +59,6 @@ export class UserService {
    * @return {Observable<User>} - An observable that emits a User object when the unsubscribe operation is successful.
    */
   public unsubscribeTopic(topicId: number): Observable<User> {
-    return this.http.delete<User>(`${this.apiUrl}/topics/${topicId}`);
+    return this.http.delete<User>(`${this.apiUrl}/topic/${topicId}`);
   }
 }

@@ -25,29 +25,13 @@ export class SessionService {
     this.setUpUserSession().then(r => {});
   }
 
-
   public login(token: string): void {
     localStorage.setItem('token', token);
     this._isUserLoggedIn.next(true);
-    this.setUpUserSession().then(r => {});
+    this.setUpUserSession();
   }
 
-  public logout(): void {
-    localStorage.removeItem('token');
-    this._sessionUser.next(null);
-    this._isUserLoggedIn.next(false);
-    this._topicSubscriptions.next([]);
-  }
-
-  public updateUser(updatedUser: User): void {
-    this._sessionUser.next(updatedUser);
-    this.topicService.getAllTopics().subscribe((topic: Topic[]) => {
-      const topicSubscriptions: Topic[] = topic.filter((topic: Topic) => updatedUser.subscribedTopicIds.includes(topic.id));
-      this._topicSubscriptions.next(topicSubscriptions);
-    });
-  }
-
-  public async setUpUserSession(): Promise<void> {
+  private async setUpUserSession(): Promise<void> {
     const token: string | null= localStorage.getItem('token');
     if (token) {
       try {
@@ -69,12 +53,35 @@ export class SessionService {
     }
   }
 
-  public handleUnauthorizedAccess(error: any): Promise<void> {
+  public logout(): void {
+    localStorage.removeItem('token');
+    this.resetUserSession();
+  }
+
+  private resetUserSession(): void {
+    this._sessionUser.next(null);
+    this._isUserLoggedIn.next(false);
+    this._topicSubscriptions.next([]);
+  }
+
+  private handleUnauthorizedAccess(error: any): Promise<void> {
     if (error.status === 401) {
       localStorage.removeItem('token');
       this._isUserLoggedIn.next(false);
     }
     throw error;
+  }
+
+  public updateUser(modifiedUser: User): void {
+    this._sessionUser.next(modifiedUser);
+    this.updateUserTopicSubscriptions(modifiedUser);
+  }
+
+  private updateUserTopicSubscriptions(modifiedUser: User): void {
+    this.topicService.getAllTopics().subscribe((topic: Topic[]) => {
+      const topicSubscriptions: Topic[] = topic.filter((topic: Topic) => modifiedUser.subscribedTopicIds.includes(topic.id));
+      this._topicSubscriptions.next(topicSubscriptions);
+    });
   }
 
 }

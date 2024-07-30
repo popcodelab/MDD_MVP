@@ -11,8 +11,6 @@ import {Observable, of, tap} from "rxjs";
  * TopicService class
  *
  * This class provides methods for retrieving topics from an API.
- *
- * @implements {OnInit}
  */
 export class TopicService {
 
@@ -24,25 +22,24 @@ export class TopicService {
   private apiUrl: string = environment.apiUrl + '/topics';
   /**
    * Represents a list of topics.
-   * @typedef {Array.<Topic>} TopicList
    */
   private topics: Topic[] | null = null;
 
   /**
    * Constructs a new instance of the class.
    *
-   * @param {HttpClient} http - The HttpClient instance to be used for making HTTP requests.
+   * @param {HttpClient} httpClient - The HttpClient instance to be used for making HTTP requests.
    */
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   /**
-   * Retrieves topics from the specified API URL using an HTTP GET request.
+   * Retrieves all topics from the specified API URL using an HTTP GET request.
    *
    * @private
    * @returns {Observable<Topic[]>} An observable that emits an array of topics retrieved from the API.
    */
   private httpGetTopics(): Observable<Topic[]> {
-    return this.http.get<Topic[]>(this.apiUrl).pipe(
+    return this.httpClient.get<Topic[]>(this.apiUrl).pipe(
       tap((topics: Topic[]) => this.topics = topics)
     );
   }
@@ -52,7 +49,7 @@ export class TopicService {
    *
    * @returns {Observable<Topic[]>} An Observable that emits the array of topics.
    *    If topics are already available, it returns an Observable of the existing topics.
-   *    Otherwise, it makes a HTTP GET request to fetch the topics and returns the result as an Observable.
+   *    Otherwise, it makes an HTTP GET request to fetch the topics and returns the result as Observable.
    */
   getAllTopics(): Observable<Topic[]> {
     return this.topics ? of(this.topics) : this.httpGetTopics();

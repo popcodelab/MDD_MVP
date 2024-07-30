@@ -15,7 +15,7 @@ import java.util.Optional;
  * If the entity is not found, the methods may return null or an empty Optional, depending on the method.
  *
  * @author Pignon Pierre-Olivier
- * @version 2.0
+ * @version 1.0
  * @see JpaRepository
  * @see User
  * @see Optional

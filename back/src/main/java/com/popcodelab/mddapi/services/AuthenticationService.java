@@ -25,4 +25,6 @@ public interface AuthenticationService {
      * @return The JwtDto object containing the access token for the registered user.
      */
     UserDto registerUser(UserToRegisterDto userToRegisterDto);
+
+
 }
