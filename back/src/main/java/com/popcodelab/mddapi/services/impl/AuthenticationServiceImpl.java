@@ -40,6 +40,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     private final BCryptPasswordEncoder passwordEncoder;
 
+    /**
+     * The authentication manager used for user authentication in the system.
+     *
+     * <p>
+     * The authentication manager is responsible for authenticating user credentials and performing other related
+     * authentication operations.
+     *
+     * <p>
+     * It is auto-wired and injected into the class where it is needed, using the Spring framework's dependency injection
+     * mechanism.
+     *
+     * @see AuthenticationManager
+     */
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -57,7 +70,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * @throws UsernameNotFoundException If the user is not found in the database.
      * @throws BadCredentialsException If the provided credentials are invalid.
      */
-    public Authentication authenticateUser(SignInDto signInDto) {
+    public Authentication authenticateUser(final SignInDto signInDto) {
         log.debug("Authenticate user : {}", signInDto.getEmailOrUsername());
         User user = userRepository.findByEmail(signInDto.getEmailOrUsername());
         if (user == null) {
@@ -86,7 +99,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * @return The UserDto object representing the registered user.
      * @throws IllegalArgumentException if the email is already in use, the username is already in use, or the password is less than 8 characters long.
      */
-    public UserDto registerUser(UserToRegisterDto userToRegisterDto) {
+    public UserDto registerUser(final UserToRegisterDto userToRegisterDto) {
         log.debug("Register user : {}", userToRegisterDto);
         User existingUser = userRepository.findByEmail(userToRegisterDto.getEmail());
         if (existingUser != null) {

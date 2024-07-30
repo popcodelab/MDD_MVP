@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
      * @param authentication The authentication object representing the logged user.
      * @return The UserDto object containing information about the logged user.
      */
-    public UserDto getLoggedUser(Authentication authentication) {
+    public UserDto getLoggedUser(final Authentication authentication) {
         log.debug("Looking for the user who logs with : {}", authentication.getName());
         User user = findUserByNameOrEmail(authentication.getName());
         UserDto userDto = modelMapper.map(user, UserDto.class);
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
      * @return The User object matching the name or email identifier.
      * @throws UsernameNotFoundException If the user is not found.
      */
-    private User findUserByNameOrEmail(String identifier) {
+    private User findUserByNameOrEmail(final String identifier) {
         User user = userRepository.findByEmail(identifier);
         if (user == null) {
             user = userRepository.findByUsername(identifier);
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
      * @param authentication    the authentication object of the logged-in user
      * @return the UserDto object representing the logged-in user after the unsubscription
      */
-    public UserDto unsubscribesTopic(Long topicId, Authentication authentication) {
+    public UserDto unsubscribesTopic(final Long topicId, final Authentication authentication) {
         UserDto loggedUserDto = getLoggedUser(authentication);
         User user = verifyUser(loggedUserDto);
         verifyTopicExists(topicId);
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
      * @return the corresponding User object if found.
      * @throws EntityNotFoundException if the user is not found in the repository.
      */
-    private User verifyUser(UserDto loggedUserDto) {
+    private User verifyUser(final UserDto loggedUserDto) {
         return userRepository.findById(loggedUserDto.getId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
      * @param topicId the ID of the topic to be verified
      * @throws EntityNotFoundException if the topic with the given ID does not exist
      */
-    private void verifyTopicExists(Long topicId) {
+    private void verifyTopicExists(final Long topicId) {
         if (!topicRepository.existsById(topicId)) {
             throw new EntityNotFoundException("Topic not found");
         }
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
      * @param topicId The ID of the topic the user wishes to unsubscribe from.
      * @throws IllegalArgumentException If the user is not currently subscribed to the specified topic.
      */
-    private void unsubscribeFromTopic(User user, Long topicId) {
+    private void unsubscribeFromTopic(final User user, final Long topicId) {
         if (!user.getSubscribedTopicIds().contains(topicId)) {
             throw new IllegalArgumentException("User did not subscribed to this topic");
         }

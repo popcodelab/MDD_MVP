@@ -11,6 +11,15 @@ import lombok.Data;
  */
 @Data
 public class SignInDto {
+    /**
+     * The emailOrUsername variable represents the email or username of a user.
+     * It is used in the SignInDto class to store the user's email or username for sign-in purposes.
+     */
     private String emailOrUsername;
+
+    /**
+     * The password variable represents the password of a user.
+     * It is used in the SignInDto class to store the user's password for sign-in purposes.
+     */
     private String password;
 }

@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Log4j2
-public class MddApiApplication {
+class MddApiApplication {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         log.debug("Starting MDD - Minimum Viable Product version");
         SpringApplication.run(MddApiApplication.class, args);
     }

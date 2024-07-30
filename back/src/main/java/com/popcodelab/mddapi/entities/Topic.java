@@ -22,7 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Topic extends BaseEntity{
+public class Topic extends BaseEntity {
 
     @Column(nullable = false)
     private String title;

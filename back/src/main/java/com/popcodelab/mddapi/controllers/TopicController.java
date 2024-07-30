@@ -28,7 +28,18 @@ public class TopicController {
      */
     private final TopicService topicService;
 
-    public TopicController(TopicService topicService) {
+    /**
+     * The TopicController class is responsible for handling requests related to topics.
+     * It provides an endpoint to retrieve all the topics.
+     *
+     * This class is annotated with @RestController, which marks it as a controller that handles
+     * RESTful requests and responses. It is also annotated with @RequestMapping("/api/topics"),
+     * which specifies the base URL for all endpoints in this controller.
+     *
+     * This class depends on the TopicService interface to retrieve the topics data. The dependency
+     * is injected through the constructor using the @param tag.
+     */
+    public TopicController(final TopicService topicService) {
         this.topicService = topicService;
     }
 

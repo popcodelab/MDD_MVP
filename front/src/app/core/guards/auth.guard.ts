@@ -6,7 +6,7 @@ import {firstValueFrom, map, take} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class authGuardService {
   constructor(
     private sessionService: SessionService,
     private router: Router

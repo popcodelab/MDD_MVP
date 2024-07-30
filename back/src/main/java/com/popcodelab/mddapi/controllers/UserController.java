@@ -28,9 +28,11 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * The UserController class is responsible for handling user-related operations.
+     * Constructs a new UserController with the specified UserService.
+     *
+     * @param userService the UserService used to interact with the user data
      */
-    public UserController(UserService userService) {
+    public UserController(final UserService userService) {
         this.userService = userService;
     }
 
@@ -51,7 +53,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Not Found : the user has not been retrieved"),
             @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred"
             )})
-    public ResponseEntity<?> getLoggedUser(Authentication authentication) {
+    public ResponseEntity<?> getLoggedUser(final Authentication authentication) {
         log.debug("Retrieving info for login : {}", authentication.getName());
         UserDto userDto = userService.getLoggedUser(authentication);
         log.debug("User found : {} - {}", userDto.getUsername(), userDto.getEmail());
@@ -60,7 +62,7 @@ public class UserController {
 
 
     @DeleteMapping("/topic/{topicId}")
-    @Operation(summary = "Delete a user topic subscription.",
+    @Operation(summary = "Deletes a user topic subscription.",
             description = "Removes the link between a user and topic subscription")
     @ApiResponses(value = {
             @ApiResponse(
@@ -80,7 +82,7 @@ public class UserController {
                     description = "Internal Server Error : An unexpected error occurred"
             )
     })
-    public UserDto unsubscribesTopic(@PathVariable Long topicId, Authentication authentication) {
+    public UserDto unsubscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
         return userService.unsubscribesTopic(topicId, authentication);
     }
 }

@@ -9,5 +9,11 @@ import org.springframework.security.core.Authentication;
  * @version 1.0
  */
 public interface JwtService {
+    /**
+     * Generates a JWT token for the given authentication.
+     *
+     * @param authentication the authentication object containing the user's credentials
+     * @return the generated JWT token as a string
+     */
     String generateToken(Authentication authentication);
 }

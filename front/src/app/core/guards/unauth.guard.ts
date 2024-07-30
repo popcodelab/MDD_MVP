@@ -6,7 +6,7 @@ import {map, Observable} from "rxjs";
 @Injectable({
   providedIn: 'root' }
 )
-export class UnauthGuardService {
+export class unAuthGuardService {
   constructor(
     private router: Router,
     private sessionService: SessionService,

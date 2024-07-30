@@ -21,12 +21,30 @@ import java.util.Optional;
  * @see Optional
  */
 public interface UserRepository extends JpaRepository<User, Long> {
+    /**
+     * Retrieves a User entity by its ID.
+     *
+     * @param id the ID of the User entity to retrieve
+     * @return an Optional containing the User entity if found, or an empty Optional if not found
+     */
     @NonNull
     Optional<User> findById(@NonNull Long id);
 
+    /**
+     * Retrieves a User entity by its email.
+     *
+     * @param email the email of the User entity to retrieve
+     * @return the User entity
+     */
     @NonNull
     User findByEmail(@NonNull String email);
 
+    /**
+     * Finds a user by their username.
+     *
+     * @param username the username of the user to find
+     * @return the user with the specified username
+     */
     @NonNull
     User findByUsername(@NonNull String username);
 }

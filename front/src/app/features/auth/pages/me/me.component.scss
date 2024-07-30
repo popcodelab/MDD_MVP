@@ -1,10 +1,1 @@
-.subscriptions-grid {
-  --grid-min-column-size: 20rem;
-  --grid-column-size: min(var(--grid-min-column-size), 100%);
-  --fraction-unit: 1fr;
-  --grid-column-template: repeat(auto-fit, minmax(var(--grid-column-size), var(--fraction-unit)));
 
-  display: grid;
-  grid-template-columns: var(--grid-column-template);
-  gap: 1rem;
-}

@@ -19,7 +19,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TopicDto {
+    /**
+     * The id variable represents the unique identifier of a topic.
+     */
     private Long id;
+    /**
+     * The `title` variable stores the title of a topic.
+     */
     private String title;
+    /**
+     * The private String variable description is a member of the TopicDto class.
+     * It represents the description of a topic.
+     */
     private String description;
 }

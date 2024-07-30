@@ -44,6 +44,15 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    /**
+     * An instance of the JwtService class which is used for handling JSON Web Tokens (JWTs).
+     *
+     * It is autowired and therefore injected using Spring's dependency injection mechanism.
+     *
+     * This variable can be used to access the methods and functionality provided by the JwtService class.
+     *
+     * Please refer to the JwtService class documentation for more information on how to use this service.
+     */
     @Autowired
     private JwtService jwtService;
 
@@ -61,7 +70,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<?> register(@RequestBody UserToRegisterDto userToRegisterDto) {
+    public ResponseEntity<?> register(final @RequestBody UserToRegisterDto userToRegisterDto) {
         try {
             UserDto userDto = this.authenticationService.registerUser(userToRegisterDto);
             return ResponseEntity.ok(userDto);
@@ -89,7 +98,7 @@ public class AuthenticationController {
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<Map<String, String>> login(@RequestBody SignInDto signInDto) {
+    public ResponseEntity<Map<String, String>> login(final @RequestBody SignInDto signInDto) {
         try {
             Authentication authentication = this.authenticationService.authenticateUser(signInDto);
             String token = jwtService.generateToken(authentication);

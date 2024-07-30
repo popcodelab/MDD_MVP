@@ -37,7 +37,12 @@ public class JwtServiceImpl implements JwtService {
     @Value("${application.security.jwt.expiration}")
     private String stringJwtExpiration;
 
-    public JwtServiceImpl(JwtEncoder jwtEncoder) {
+    /**
+     * Constructs a new JwtServiceImpl with the provided JwtEncoder.
+     *
+     * @param jwtEncoder the JwtEncoder used for encoding JWT tokens
+     */
+    public JwtServiceImpl(final JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
 
@@ -47,7 +52,7 @@ public class JwtServiceImpl implements JwtService {
      * @param authentication the authentication object
      * @return the generated JWT token as a string
      */
-    public String generateToken(Authentication authentication) {
+    public String generateToken(final Authentication authentication) {
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
@@ -65,7 +70,7 @@ public class JwtServiceImpl implements JwtService {
      * @param startInstant the start instant from which to calculate the expiry time
      * @return the expiry time as an Instant object
      */
-    private Instant getExpiryTime(Instant startInstant) {
+    private Instant getExpiryTime(final Instant startInstant) {
         return startInstant.plusMillis(Long.parseLong(stringJwtExpiration.trim()));
     }
 }

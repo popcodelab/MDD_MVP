@@ -15,9 +15,23 @@ import java.util.ArrayList;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    /**
+     * The userRepository variable represents a UserRepository object that is used to interact with the user entities in the system.
+     * It is a final variable, meaning that its reference cannot be changed once initialized.
+     * The userRepository variable is used in the UserDetailsServiceImpl class to load a User with the specified username.
+     *
+     * @see UserRepository
+     * @see UserDetailsServiceImpl
+     */
     private final UserRepository userRepository;
 
-    public UserDetailsServiceImpl(UserRepository userRepository) {
+    /**
+     * This is a constructor for the UserDetailsServiceImpl class. It initializes the class with a UserRepository object.
+     *
+     * @param userRepository the UserRepository object used to interact with the user entities in the system
+     */
+    public UserDetailsServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -28,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @return the UserDetails representing the loaded User
      * @throws UsernameNotFoundException if the User is not found
      */
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
         if (user == null) {
             user = userRepository.findByUsername(username);
