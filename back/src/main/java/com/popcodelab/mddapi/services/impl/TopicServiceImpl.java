@@ -38,6 +38,7 @@ public class TopicServiceImpl implements TopicService {
      * @see ModelMapper
      * @see <a href="https://modelmapper.org/">ModelMapper Documentation</a>
      */
+    @Autowired
     private ModelMapper modelMapper;
 
     /**

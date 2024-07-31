@@ -14,5 +14,10 @@ export const APP_CONSTANTS = {
       '1 lowercase letter, 1 number and 1 special character',
     USERNAME_VALIDATION_RULE: 'a username with at least 4 characters',
     EMAIL_VALIDATION_RULE: "a valid email address"
+
+  },
+  SORT_DIRECTIONS: {
+    ASCENDING: 'asc',
+    DESCENDING: 'desc',
   }
 }

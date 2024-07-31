@@ -1,0 +1,15 @@
+/* Customized Material UI */
+
+mat-card.card {
+  --flex-direction: column;
+  --justify-content: space-between;
+  background-color: var(--gray-50);
+  display: flex;
+  flex-direction: var(--flex-direction);
+  justify-content: var(--justify-content);
+}
+
+mat-card-subtitle, .post-subtitle{
+  color: black;
+  font-size: clamp(0.75rem, 1vw, 1rem);
+}

@@ -9,6 +9,7 @@ import {LoginComponent} from "./features/auth/pages/login/login.component";
 import {authGuardService} from "./core/guards/auth.guard";
 import {unAuthGuardService} from "./core/guards/unauth.guard";
 import {TopicsComponent} from "./features/topics/pages/topics/topics.component";
+import {PostsComponent} from "./features/posts/pages/posts/posts.component";
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
@@ -23,6 +24,7 @@ const routes: Routes = [
     children: [
       {path: 'me', component: MeComponent},
       {path: 'topics', component: TopicsComponent},
+      {path: 'posts', component: PostsComponent},
       {path: '**', component: PageNotFoundComponent}
     ]
   },

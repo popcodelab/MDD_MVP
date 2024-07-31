@@ -32,7 +32,7 @@ $warn-color: mat.get-theme-color($mdd-theme, warn);
   --primary-color: #{$primary-color};
   --accent-color: #{$accent-color};
   --warn-color: #{$warn-color};
-  --gray-50: #F5F5F5; // Background of theme and article cards
+  --gray-50: #F5F5F5; // Background of post and topic cards
   --gray-100: #EEEEEE; // Background of comment
   --gray-200: #D9D9D9; // User avatar background
   --gray-700: #939393; // Placeholder text
