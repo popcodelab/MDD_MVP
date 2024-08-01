@@ -48,6 +48,7 @@ export class PostService {
   }
 
   sortPostsBy(sortBy: string, direction: string = 'desc'): void {
+    console.debug("Sort by : " + sortBy + " - Direction : " + direction);
     if (!this._posts.value) return;
     switch (sortBy) {
       case 'date':

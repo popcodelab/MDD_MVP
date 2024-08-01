@@ -4,7 +4,7 @@
 
 @use '@angular/material' as mat;
 @use './palettes.scss' as palettes;
-
+@import "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 // Define colors
 $mdd-primary: mat.define-palette(palettes.$mdd-primary-palette, 400);
@@ -112,7 +112,10 @@ a:hover {
   display: grid;
   grid-template-columns: var(--grid-column-template);
   gap: 1rem;
+  margin-top: 1rem;
 }
+
+
 
 
 

@@ -13,3 +13,62 @@ mat-card-subtitle, .post-subtitle{
   color: black;
   font-size: clamp(0.75rem, 1vw, 1rem);
 }
+
+
+
+
+
+.mat-divider.posts{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.posts-layout {
+
+  --min-column-size: 20rem;
+  --minmax-min: min(var(--min-column-size), 100%);
+  --minmax-max: 1fr;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--minmax-min), var(--minmax-max)));
+  gap: 1rem;
+}
+
+/** Flex utilities */
+.flex {
+  --gap: 1rem;
+  display: flex;
+  gap: var(--gap);
+  flex-direction: var(--direction);
+  justify-content: space-between;
+}
+
+@media (width < 599px) {
+  section.flex {
+    --direction: column;
+    align-items: center;
+    &  a {
+      width: fit-content;
+    }
+  }
+}
+/** Menu item */
+.menu-item-container{
+  display: inline-flex;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: row ;
+}
+
+.menu-item-text {
+  margin-right: auto;
+}
+
+.menu-item-icon {
+  display: flex;
+}
+
+.arrow-up{
+  transform: rotate(180deg);
+}
