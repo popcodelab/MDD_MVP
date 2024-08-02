@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -29,15 +30,16 @@ public class PostController {
     private final UserService userService;
     private final PostService postService;
 
-    public PostController(PostService postService, UserService userService){
+    public PostController(PostService postService, UserService userService) {
         this.postService = postService;
         this.userService = userService;
     }
+
     @GetMapping
-    @Operation(summary = "Get articles for subscribed themes")
+    @Operation(summary = "Get posts for subscribed topics")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Successfully retrieved list of articles",
+                    description = "Successfully retrieved list of posts",
                     content = @Content(
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = PostDto.class)))
@@ -51,15 +53,29 @@ public class PostController {
             @ApiResponse(responseCode = "500",
                     description = "Internal error")
     })
-    public ResponseEntity<List<PostDto>> getPostsFromUserTopics(Authentication authentication){
+    public ResponseEntity<List<PostDto>> getPostsFromUserTopics(Authentication authentication) {
         try {
             List<Long> topicIds = getUserSubscribedTopicsIds(authentication);
             List<PostDto> posts = postService.getPostsFromUserTopics(topicIds);
             return new ResponseEntity<>(posts, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error("Error occurred during getting posts from user topics", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get post by its Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Success|OK",
+                    content = @Content(schema = @Schema(implementation = UserDto.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "404", description = "Not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
+    public Optional<PostDto> getPostById(@PathVariable Long id) {
+        return postService.getPostById(id);
     }
 
     private List<Long> getUserSubscribedTopicsIds(Authentication authentication) {
@@ -69,7 +85,19 @@ public class PostController {
 
 
     @PostMapping
-    public PostDto createArticle(@RequestBody PostDto postDto) {
+    @Operation(summary = "Creates a new Post")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",
+                    description = "Post created successfully",
+                    content = @Content(schema = @Schema(implementation = PostDto.class))),
+            @ApiResponse(responseCode = "400", description = "Bad request, invalid input"),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized : The request lacks valid authentication credentials"
+            ),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public PostDto newPost(@RequestBody PostDto postDto) {
         return postService.newPost(postDto);
     }
 }

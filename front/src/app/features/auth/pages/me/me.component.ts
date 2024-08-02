@@ -39,8 +39,10 @@ import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} fr
 })
 export class MeComponent implements OnInit, OnDestroy {
 
-  private userServiceSubscription: Subscription | null = null;
-  private topicServiceSubscription: Subscription | null = null;
+  /**
+   * Represents a collection of subscriptions.
+   */
+  private subscriptions: Subscription[] = [];
 
   loggedUser: User | null =
     null;
@@ -124,20 +126,6 @@ export class MeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login'])
   }
 
-
-  /**
-   * Lifecycle hook that is called when a component is destroyed.
-   * This method unsubscribes from any active subscriptions to avoid memory leaks.
-   */
-  ngOnDestroy(): void {
-    if (this.userServiceSubscription) {
-      this.userServiceSubscription.unsubscribe();
-    }
-    if (this.topicServiceSubscription) {
-      this.topicServiceSubscription.unsubscribe();
-    }
-  }
-
   /**
    * Initializes the component and sets up subscriptions for user and topics.
    */
@@ -145,7 +133,7 @@ export class MeComponent implements OnInit, OnDestroy {
     /**
      * Represents the user's subscription information.
      */
-    this.userServiceSubscription = this.sessionService.sessionUser$.subscribe((user: User | null) => {
+    let userServiceSubscription: Subscription = this.sessionService.sessionUser$.subscribe((user: User | null) => {
       this.loggedUser = user;
       if (this.loggedUser) {
         console.log('Logged-in user : ', this.loggedUser);
@@ -156,12 +144,22 @@ export class MeComponent implements OnInit, OnDestroy {
         this.formControls['email'].setValue('');
       }
     });
+    this.subscriptions.push(userServiceSubscription);
     /**
      * Represents a user's topics subscription.
      */
-    this.topicServiceSubscription = this.sessionService.topicSubscriptions$.subscribe((topics: Topic[]) => {
+    let topicServiceSubscription: Subscription = this.sessionService.topicSubscriptions$.subscribe((topics: Topic[]) => {
       this.subscribedTopics = topics;
     });
+    this.subscriptions.push(topicServiceSubscription);
+  }
+
+  /**
+   * Lifecycle hook that is called when a component is destroyed.
+   * This method unsubscribes from any active subscriptions to avoid memory leaks.
+   */
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
 }

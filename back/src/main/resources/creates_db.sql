@@ -35,7 +35,7 @@ CREATE TABLE posts
 CREATE TABLE comments
 (
     id         BIGINT PRIMARY KEY AUTO_INCREMENT,
-    comment    TEXT      NOT NULL,
+    content    TEXT      NOT NULL,
     user_id    BIGINT    NOT NULL,
     post_id    BIGINT    NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

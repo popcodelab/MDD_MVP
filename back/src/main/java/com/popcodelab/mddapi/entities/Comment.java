@@ -1,23 +1,24 @@
 package com.popcodelab.mddapi.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "comments")
+@Accessors
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Post extends BaseEntity {
-    @Column(nullable = false, length = 254)
-    private String title;
+public class Comment extends BaseEntity {
 
     @Column(nullable = false)
     private String content;
@@ -25,9 +26,6 @@ public class Post extends BaseEntity {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "topic_id", nullable = false)
-    private Long topicId;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    private final List<Long> commentIds = new ArrayList<>();
+    @Column(name = "post_id", nullable = false)
+    private Long postId;
 }

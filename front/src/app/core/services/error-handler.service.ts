@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SnackBarService} from "./snack-bar.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {APP_CONSTANTS} from "../../shared/constants";
 
 /**
  * ErrorHandlerService class handles error management and displaying error messages.
@@ -29,7 +30,7 @@ export class ErrorHandlerService {
     let message: string;
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
-        message = 'You must be authenticated';
+        message = APP_CONSTANTS.ERROR_MESSAGES.MUST_BE_AUTHENTICATED;
         this.logStackTrace(error);
       } else {
         message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.error.error;

@@ -3,6 +3,7 @@ package com.popcodelab.mddapi.services;
 import com.popcodelab.mddapi.dto.post.PostDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
 
@@ -13,6 +14,8 @@ public interface PostService {
      * @return A list of PostDto objects representing the posts from user topics.
      */
     List<PostDto> getPostsFromUserTopics(List<Long> topicIds);
+
+    Optional<PostDto> getPostById(Long id);
 
     /**
      * Creates a new post based on the provided PostDto object.

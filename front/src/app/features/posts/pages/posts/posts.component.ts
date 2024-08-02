@@ -68,7 +68,6 @@ export class PostsComponent implements OnInit, OnDestroy {
   ) {
   }
 
-
   trackByPostId(index: number, post: any): number {
     return post.id;
   }
@@ -87,7 +86,6 @@ export class PostsComponent implements OnInit, OnDestroy {
       this.posts = posts;
     });
   }
-
 
   /**
    * Retrieves the query parameters from the current route and assigns them to the corresponding class variables.

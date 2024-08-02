@@ -1,0 +1,68 @@
+<div>
+  <a routerLink="/post" class="back-link">
+    <mat-icon aria-hidden="false" aria-label="Back" fontIcon="arrow_back"></mat-icon>
+  </a>
+  <form *ngIf="post" class="post flex flex-col">
+    <section>
+      <h2 c>{{ post.title }}</h2>
+      <header class="flex justify-start justify-start wrap subtitle">
+        <time [dateTime]="post.created_at | date:'yyyy-MM-dd' ">{{ post.created_at | date:'mediumDate' }}</time>
+        <address>{{ post.username }}</address>
+        <span>{{ post.topicTitle }}</span>
+      </header>
+      <p>{{ post.content }}</p>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <h3>Comments</h3>
+    <div>
+      <form *ngFor="let comment of comments">
+        <p >{{ comment.username }}</p>
+        <p >{{ comment.content }}</p>
+      </form>
+    </div>
+  </form>
+
+  <form *ngIf="post" (ngSubmit)="onAddCommentClick()">
+    <mat-form-field appearance="outline"
+                    [ngClass]="{'mat-form-field-invalid': formControls['content'].invalid && formControls['content'].dirty}">
+      <mat-label>{{ labels['content'] }}</mat-label>
+      <textarea matInput rows="2" [formControl]="formControls['content']" (blur)="onBlur('content')"></textarea>
+
+      <button
+        type="submit"
+        [disabled]="formControls['content'].invalid"
+        matSuffix
+        style="background-color: transparent;
+                 justify-content: center;
+                 align-items: center;
+                 width: 35px;
+                 height: 35px;
+                 border: none;">
+        <mat-icon id="add-comment-button" aria-hidden="false" aria-label="Add" fontIcon="send" color="primary">
+        </mat-icon>
+      </button>
+
+      <mat-error
+        *ngIf="formControls['content'].invalid && formControls['content'].dirty">{{ errorMessages['content'] }}
+      </mat-error>
+    </mat-form-field>
+    <button
+      type="submit"
+      [disabled]="formControls['content'].invalid"
+      style="background-color: transparent;
+                 justify-content: center;
+                 align-items: center;
+                 width: 50px;
+                 height: 50px;
+                 border: none;">
+      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="send" color="primary" style="font-size: 40px;
+                       width: 40px;
+                       height: 40px;
+                       margin-bottom: 20px;
+                       transform: rotate(-45deg);">
+      </mat-icon>
+    </button>
+  </form>
+</div>

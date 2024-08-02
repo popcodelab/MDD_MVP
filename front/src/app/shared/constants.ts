@@ -21,7 +21,8 @@ export const APP_CONSTANTS = {
     DESCENDING: 'desc',
   },
   ERROR_MESSAGES: {
-    PLEASE_ENTER: 'Please, enter '
+    PLEASE_ENTER: 'Please, enter ',
+    MUST_BE_AUTHENTICATED: 'You must be authenticated'
 
   }
 }
