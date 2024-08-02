@@ -31,20 +31,22 @@
     <h2>User topic subscriptions</h2>
     <mat-divider></mat-divider>
     <p></p>
-      <div class="topics-layout">
-        @for (topic of subscribedTopics; track topic.id) {
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{ topic.title | titlecase}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>{{ topic.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button class="topic-card-button" mat-raised-button color="primary" (click)="onUnsubscribeClick(topic.id)">Unsubscribe</button>
-            </mat-card-actions>
-          </mat-card>
-        }
+    <div class="topics-layout">
+      @for (topic of subscribedTopics; track topic.id) {
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ topic.title | titlecase }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ topic.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="topic-card-button" mat-raised-button color="primary" (click)="onUnsubscribeClick(topic.id)">
+              Unsubscribe
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
     </div>
   </section>
 </div>

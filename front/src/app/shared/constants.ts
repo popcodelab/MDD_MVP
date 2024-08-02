@@ -20,7 +20,7 @@ export const APP_CONSTANTS = {
     ASCENDING: 'asc',
     DESCENDING: 'desc',
   },
-  ERROR_MESSAGES:{
+  ERROR_MESSAGES: {
     PLEASE_ENTER: 'Please, enter '
 
   }

@@ -106,10 +106,10 @@ export class TopicsComponent implements OnInit, OnDestroy {
    * @return {void} Nothing is returned by this method.
    */
   ngOnDestroy(): void {
-    if (this.userServiceSubscription){
+    if (this.userServiceSubscription) {
       this.userServiceSubscription.unsubscribe();
     }
-    if (this.topicServiceSubscription){
+    if (this.topicServiceSubscription) {
       this.topicServiceSubscription.unsubscribe();
     }
   }

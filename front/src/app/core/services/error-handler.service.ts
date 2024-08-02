@@ -2,6 +2,12 @@ import {Injectable} from '@angular/core';
 import {SnackBarService} from "./snack-bar.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
+/**
+ * ErrorHandlerService class handles error management and displaying error messages.
+ *
+ * @author Pierre-Olivier Pignon
+ * @version 1.0
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -12,19 +18,39 @@ export class ErrorHandlerService {
   constructor(private snackBarService: SnackBarService) {
   }
 
-  handleError(error: Error | HttpErrorResponse) {
+  /**
+   * Handles the given error and displays an appropriate message to the user.
+   *
+   * @param {Error|HttpErrorResponse} error - The error object to handle.
+   *
+   * @return {void}
+   */
+  handleError(error: Error | HttpErrorResponse): void {
     let message: string;
-
     if (error instanceof HttpErrorResponse) {
       if (error.status === 401) {
         message = 'You must be authenticated';
+        this.logStackTrace(error);
       } else {
         message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.error.error;
+        this.logStackTrace(error);
       }
     } else {
       message = this.AN_ERROR_HAS_OCCURRED + ' : ' + error.message;
+      this.logStackTrace(error);
     }
-
     this.snackBarService.openSnackBar(message);
+  }
+
+  /**
+   * Logs the stack trace of the given error.
+   *
+   * @param {any} error - The error object for which to log the stack trace.
+   * @private
+   * @return {void}
+   */
+  private logStackTrace(error: any): void {
+    console.error('An error occurred:', error.message);
+    console.error('Stack trace:', error.stack);
   }
 }

@@ -37,7 +37,7 @@ import {RouterLink} from "@angular/router";
   templateUrl: './new-post.component.html',
   styleUrl: './new-post.component.scss'
 })
-export class NewPostComponent implements  OnInit, OnDestroy{
+export class NewPostComponent implements OnInit, OnDestroy {
   private postServiceSubscription: Subscription | null = null;
   private topicServiceSubscription: Subscription | null = null;
 
@@ -69,8 +69,8 @@ export class NewPostComponent implements  OnInit, OnDestroy{
 
   constructor(private topicService: TopicService,
               private postService: PostService,
-              private snackBarService: SnackBarService) {}
-
+              private snackBarService: SnackBarService) {
+  }
 
 
   onSubmit(): void {
@@ -81,7 +81,7 @@ export class NewPostComponent implements  OnInit, OnDestroy{
         content: this.formControls['content'].value
       };
 
-      this.postServiceSubscription= this.postService.createPost(newPost).subscribe({
+      this.postServiceSubscription = this.postService.createPost(newPost).subscribe({
         next: () => {
           this.snackBarService.openSnackBar('Post has been created', 'Close');
           Object.values(this.formControls).forEach((control: FormControl<any>) => {
@@ -104,17 +104,17 @@ export class NewPostComponent implements  OnInit, OnDestroy{
     return this.formControls['topic'].invalid || this.formControls['title'].invalid || this.formControls['content'].invalid;
   }
 
-  onBlur(controlName: string):void {
+  onBlur(controlName: string): void {
     const control: FormControl<any> = this.formControls[controlName];
     control.markAsTouched();
-    if (controlName!='topic')
-    {
+    if (controlName != 'topic') {
       this.errorMessages[controlName] = control.hasError('required') ? APP_CONSTANTS.ERROR_MESSAGES.PLEASE_ENTER
         + `${this.controlNames[controlName]}` : '';
-    }else {
+    } else {
       this.errorMessages[controlName] = control.hasError('required') ? `Please, choose a ${this.controlNames[controlName]}` : '';
     }
   }
+
   ngOnInit(): void {
     this.topicServiceSubscription = this.topicService.getAllTopics().subscribe((topics: Topic[]) => {
       this.topics = topics;
@@ -122,16 +122,13 @@ export class NewPostComponent implements  OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    if (this.postServiceSubscription){
+    if (this.postServiceSubscription) {
       this.postServiceSubscription.unsubscribe();
     }
-    if (this.topicServiceSubscription){
+    if (this.topicServiceSubscription) {
       this.topicServiceSubscription.unsubscribe();
     }
   }
-
-
-
 
 
 }

@@ -6,11 +6,12 @@
       <mat-card-title class="mat-h3">{{ topic.title }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p >{{ topic.description }}</p>
+      <p>{{ topic.description }}</p>
     </mat-card-content>
     <mat-card-actions class="actions">
       <button mat-raised-button color="primary" [disabled]="hasUserSubscribed(topic.id)"
-              (click)="onSubscribeClick(topic.id)">{{ hasUserSubscribed(topic.id) ? "Subscribed" : "Subscribe" }}</button>
+              (click)="onSubscribeClick(topic.id)">{{ hasUserSubscribed(topic.id) ? "Subscribed" : "Subscribe" }}
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

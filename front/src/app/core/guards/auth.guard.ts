@@ -10,7 +10,8 @@ export class authGuardService {
   constructor(
     private sessionService: SessionService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   /**
    * Determines if the user is authorized to access a specific route.

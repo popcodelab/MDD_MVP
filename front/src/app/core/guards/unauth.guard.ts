@@ -4,13 +4,15 @@ import {SessionService} from "../../features/auth/services/session.service";
 import {map, Observable} from "rxjs";
 
 @Injectable({
-  providedIn: 'root' }
+    providedIn: 'root'
+  }
 )
 export class unAuthGuardService {
   constructor(
     private router: Router,
     private sessionService: SessionService,
-  ) { }
+  ) {
+  }
 
   public canActivate(): Observable<boolean | UrlTree> {
     return this.sessionService.isUserLoggedIn$.pipe(

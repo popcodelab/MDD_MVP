@@ -23,7 +23,6 @@ export class PostService {
         const topicsIds: number[] = topics.map((topic: Topic) => topic.id);
         return this.getAllTopicPosts(topicsIds);
       })
-
     ).subscribe();
   }
 
