@@ -39,10 +39,11 @@ import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} fr
 })
 export class MeComponent implements OnInit, OnDestroy {
 
-  private userSubscription: Subscription | null = null;
-  private topicsSubscription: Subscription | null = null;
+  private userServiceSubscription: Subscription | null = null;
+  private topicServiceSubscription: Subscription | null = null;
 
-  loggedUser: User | null = null;
+  loggedUser: User | null =
+    null;
   subscribedTopics: Topic[] = [];
 
   formControls: { [key: string]: FormControl } = {
@@ -85,7 +86,8 @@ export class MeComponent implements OnInit, OnDestroy {
   onBlur(controlName: string): void {
     const control: FormControl<any> = this.formControls[controlName];
     control.markAsTouched();
-    this.errorMessages[controlName] = control.hasError('required') ? `Please enter ${this.controlNames[controlName]}` : '';
+    this.errorMessages[controlName] = control.hasError('required') ? APP_CONSTANTS.ERROR_MESSAGES.PLEASE_ENTER
+      + `${this.controlNames[controlName]}` : '';
   }
 
   private isFormValid(): boolean {
@@ -128,11 +130,11 @@ export class MeComponent implements OnInit, OnDestroy {
    * This method unsubscribes from any active subscriptions to avoid memory leaks.
    */
   ngOnDestroy(): void {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
+    if (this.userServiceSubscription) {
+      this.userServiceSubscription.unsubscribe();
     }
-    if (this.topicsSubscription) {
-      this.topicsSubscription.unsubscribe();
+    if (this.topicServiceSubscription) {
+      this.topicServiceSubscription.unsubscribe();
     }
   }
 
@@ -143,7 +145,7 @@ export class MeComponent implements OnInit, OnDestroy {
     /**
      * Represents the user's subscription information.
      */
-    this.userSubscription = this.sessionService.sessionUser$.subscribe((user: User | null) => {
+    this.userServiceSubscription = this.sessionService.sessionUser$.subscribe((user: User | null) => {
       this.loggedUser = user;
       if (this.loggedUser) {
         console.log('Logged-in user : ', this.loggedUser);
@@ -157,7 +159,7 @@ export class MeComponent implements OnInit, OnDestroy {
     /**
      * Represents a user's topics subscription.
      */
-    this.topicsSubscription = this.sessionService.topicSubscriptions$.subscribe((topics: Topic[]) => {
+    this.topicServiceSubscription = this.sessionService.topicSubscriptions$.subscribe((topics: Topic[]) => {
       this.subscribedTopics = topics;
     });
   }

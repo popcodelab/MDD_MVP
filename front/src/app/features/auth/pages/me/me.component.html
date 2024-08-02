@@ -1,6 +1,6 @@
 <div>
   <section>
-    <form (ngSubmit)="onSubmit()" class="auth-form">
+    <form (ngSubmit)="onSubmit()" class="mdd-form">
       <h2>My account</h2>
       <mat-form-field appearance="outline">
         <mat-label>{{ labels['username'] }}</mat-label>
@@ -20,7 +20,7 @@
       <button type="submit" [disabled]="formControls['email'].invalid || formControls['username'].invalid"
               mat-raised-button color="primary">Update
       </button>
-      <div class="auth-form">
+      <div class="mdd-form">
         <button type="button" mat-button color="warn" (click)="onLogoutClick()">Logout</button>
       </div>
     </form>

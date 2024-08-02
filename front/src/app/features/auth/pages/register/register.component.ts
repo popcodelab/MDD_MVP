@@ -174,7 +174,7 @@ export class RegisterComponent implements OnDestroy {
     const control: FormControl<any> = this.formControls[controlName];
     control.markAsTouched();
     if (control.hasError('required')) {
-      this.errorMessages[controlName] = `Please enter ${this.controlNames[controlName]}`;
+      this.errorMessages[controlName] = APP_CONSTANTS.ERROR_MESSAGES.PLEASE_ENTER + `${this.controlNames[controlName]}`;
     } else if (control.hasError('minlength')) {
       if (controlName == "username") this.errorMessages[controlName] = APP_CONSTANTS.VALIDATION_MESSAGES.USERNAME_VALIDATION_RULE;
     } else if (control.hasError('email')) {

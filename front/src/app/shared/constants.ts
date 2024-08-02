@@ -19,5 +19,9 @@ export const APP_CONSTANTS = {
   SORT_DIRECTIONS: {
     ASCENDING: 'asc',
     DESCENDING: 'desc',
+  },
+  ERROR_MESSAGES:{
+    PLEASE_ENTER: 'Please, enter '
+
   }
 }

@@ -18,6 +18,7 @@ import {MatSidenavService} from "../../core/services/mat-sidenav.service";
     MatIcon,
     RouterLink,
     RouterLinkActive,
+    RouterOutlet,
     NgClass,
     MatSidenav,
     MatSidenavContainer,

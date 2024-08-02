@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, mergeMap, Observable, tap} from "rxjs";
+import {BehaviorSubject, mergeMap, Observable, switchMap, take, tap} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {Post} from "../interfaces/post";
 import {HttpClient} from "@angular/common/http";
 import {SessionService} from "../../auth/services/session.service";
 import {Topic} from "../../topics/interfaces/topic";
+
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,28 @@ export class PostService {
     if (direction === 'asc') {
       this._posts.value.reverse();
     }
+  }
+
+  createPost(post: Pick<Post, 'title' | 'content' | 'topicId'>): Observable<Post> {
+    return this.sessionService.sessionUser$.pipe(
+      take(1),
+      switchMap(loggedUser => {
+        if (!loggedUser) {
+          throw new Error('Il n\'y a pas d\'utilisateur connecté actuellement');
+        }
+
+        const newPost: Omit<Post, 'id' | 'topicTitle' | 'commentIds'> = {
+          title: post.title,
+          content: post.content,
+          username: loggedUser.username,
+          userId: loggedUser.id,
+          topicId: post.topicId,
+          created_at: new Date()
+        };
+
+        return this.httpClient.post<Post>(`${this.apiUrl}`, newPost);
+      })
+    );
   }
 
 }

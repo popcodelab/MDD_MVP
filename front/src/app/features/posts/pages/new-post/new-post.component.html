@@ -1,0 +1,29 @@
+<div>
+  <a routerLink="/posts" class="return-link">
+    <mat-icon aria-hidden="false" aria-label="Back" fontIcon="arrow_back"></mat-icon>
+  </a>
+  <form *ngIf="topics" (ngSubmit)="onSubmit()" class="mdd-form">
+    <h2>Write a new post</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ labels['topic'] }}</mat-label>
+      <mat-select
+        [formControl]="formControls['topic']"
+        (blur)="onBlur('topic')"
+      >
+        <mat-option *ngFor="let topic of topics" [value]="topic.id">{{ topic.title }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('topic')">{{ errorMessages['topic'] }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ labels['title'] }}</mat-label>
+      <input matInput [formControl]="formControls['title']" (blur)="onBlur('title')">
+      <mat-error *ngIf="isFieldInvalid('title')">{{ errorMessages['title'] }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ labels['content'] }}</mat-label>
+      <textarea rows="10" matInput [formControl]="formControls['content']" (blur)="onBlur('content')"></textarea>
+      <mat-error *ngIf="isFieldInvalid('content')">{{ errorMessages['content'] }}</mat-error>
+    </mat-form-field>
+    <button type="submit" [disabled]="isFormInvalid()" mat-raised-button color="primary">Create</button>
+  </form>
+</div>

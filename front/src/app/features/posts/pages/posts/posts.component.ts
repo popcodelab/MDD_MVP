@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DatePipe, NgClass, NgForOf, TitleCasePipe} from "@angular/common";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {CommonModule, DatePipe, NgClass, NgForOf, TitleCasePipe} from "@angular/common";
+import {ActivatedRoute, Router, RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 import {Post} from "../../interfaces/post";
 import {Subscription, switchMap} from "rxjs";
@@ -40,7 +40,7 @@ import {MatIcon} from "@angular/material/icon";
 })
 export class PostsComponent implements OnInit, OnDestroy {
   /**
-   * Represents the subscription for a post service.
+   * Represents the subscription for a PostService.
    */
   private postServiceSubscription: Subscription | null = null;
 
@@ -125,4 +125,9 @@ export class PostsComponent implements OnInit, OnDestroy {
       this.sortBy = sortBy;
     });
   }
+
+  public newPost(){
+    this.router.navigate(['/new']);
+  }
+
 }

@@ -12,7 +12,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,9 +25,21 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
+    /**
+     * The PostRepository variable represents a repository for managing post data.
+     */
     private final PostRepository postRepository;
+    /**
+     * The UserRepository variable represents a repository for managing user data.
+     */
     private final UserRepository userRepository;
+    /**
+     * The TopicRepository variable represents a repository for managing topic data.
+     */
     private final TopicRepository topicRepository;
+    /**
+     * Represents an instance of ModelMapper used for object mapping.
+     */
     private final ModelMapper modelMapper;
 
     /**
@@ -58,5 +69,51 @@ public class PostServiceImpl implements PostService {
 
             return postDto;
         }).collect(Collectors.toList());
+    }
+
+    /**
+     * Creates a new post based on the provided PostDto object.
+     *
+     * @param postDto The PostDto object that contains the information of the post to be created.
+     * @return The newly created PostDto object with additional information like author username and topic title.
+     * @throws EntityNotFoundException If the provided userId or topicId does not exist.
+     */
+    @Override
+    public PostDto newPost(PostDto postDto) {
+        Long userId = postDto.getUserId();
+        Long topicId = postDto.getTopicId();
+        validateUserAndTopicExistence(userId, topicId);
+        Post post = modelMapper.map(postDto, Post.class);
+        post.setUserId(userId);
+        post.setTopicId(topicId);
+        Post newPost = postRepository.save(post);
+        log.debug("The post with title '{}' and ID {} was saved successfully", post.getTitle(), post.getId());
+        User author;
+        Topic topic;
+        try {
+            author = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+            topic = topicRepository.findById(topicId).orElseThrow(() -> new EntityNotFoundException("Topic not found"));
+        } catch (EntityNotFoundException e) {
+            log.error("The post with title '{}' and ID {} could not be created as it references a non-existing user or topic", postDto.getTitle(), postDto.getId());
+            throw e;
+        }
+        PostDto newPostDto = modelMapper.map(newPost, PostDto.class);
+        newPostDto.setUsername(author.getUsername());
+        newPostDto.setTopicTitle(topic.getTitle());
+        return newPostDto;
+    }
+
+    /**
+     * Validates the existence of a user and topic.
+     *
+     * @param userId   the ID of the user
+     * @param topicId  the ID of the topic
+     * @throws EntityNotFoundException if the user or topic does not exist
+     */
+    private void validateUserAndTopicExistence(Long userId, Long topicId) {
+        if (!userRepository.existsById(userId) || !topicRepository.existsById(topicId)) {
+            log.error("Attempted to create a post for non-existent user or topic. User ID: {}, Topic ID: {}", userId, topicId);
+            throw new EntityNotFoundException("User or topic does not exist");
+        }
     }
 }
