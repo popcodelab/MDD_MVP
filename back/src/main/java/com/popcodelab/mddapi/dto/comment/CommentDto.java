@@ -1,5 +1,6 @@
 package com.popcodelab.mddapi.dto.comment;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +18,6 @@ public class CommentDto {
     private Long userId;
     private String username;
     private Long postId;
-    private LocalDateTime created_at;
+    @JsonProperty("created_at")
+    private LocalDateTime createdAt;
 }

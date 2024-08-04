@@ -25,22 +25,20 @@ mat-card-subtitle, .post-subtitle {
   --minmax-min: min(var(--min-column-size), 100%);
   --minmax-max: 1fr;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  //grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(var(--minmax-min), var(--minmax-max)));
   gap: 1rem;
 }
 
 /** Flex utilities */
-.flex {
-  --gap: 1rem;
+.posts-header-container {
   display: flex;
-  gap: var(--gap);
-  flex-direction: var(--direction);
+  gap: 1rem;
   justify-content: space-between;
 }
 
 @media (width < 599px) {
-  section.flex {
-    --direction: column;
+  section.posts-header-container {
     align-items: center;
 
     & a {

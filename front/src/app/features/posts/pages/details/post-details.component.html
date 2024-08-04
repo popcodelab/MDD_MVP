@@ -1,48 +1,35 @@
-<div>
-  <a routerLink="/post" class="back-link">
-    <mat-icon aria-hidden="false" aria-label="Back" fontIcon="arrow_back"></mat-icon>
-  </a>
-  <form *ngIf="post" class="post flex flex-col">
-    <section>
-      <h2 c>{{ post.title }}</h2>
-      <header class="flex justify-start justify-start wrap subtitle">
-        <time [dateTime]="post.created_at | date:'yyyy-MM-dd' ">{{ post.created_at | date:'mediumDate' }}</time>
-        <address>{{ post.username }}</address>
-        <span>{{ post.topicTitle }}</span>
-      </header>
+<a routerLink="/posts" class="back-link">
+  <mat-icon aria-hidden="false" aria-label="Back" fontIcon="arrow_back"></mat-icon>
+</a>
+<form *ngIf="post" class="posts-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{ post.title | titlecase }}</mat-card-title>
+      <mat-card-subtitle class="post-subtitle">
+        <time [dateTime]="post.created_at | date:'yyyy-MM-dd'">{{ post.created_at | date:'mediumDate' }}</time>
+        <span> by {{ post.username }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       <p>{{ post.content }}</p>
-    </section>
+    </mat-card-content>
+  </mat-card>
+</form>
 
-    <mat-divider></mat-divider>
 
-    <h3>Comments</h3>
-    <div>
-      <form *ngFor="let comment of comments">
-        <p >{{ comment.username }}</p>
-        <p >{{ comment.content }}</p>
-      </form>
-    </div>
-  </form>
-
-  <form *ngIf="post" (ngSubmit)="onAddCommentClick()">
+<h3 style="padding-top: 1em;">Comments</h3>
+<div class="comments-container">
+  <app-post-comment *ngFor="let comment of comments" [comment]="comment"></app-post-comment>
+</div>
+<mat-divider></mat-divider>
+<div class="new-comment-container" >
+  <form *ngIf="post" (ngSubmit)="onAddCommentClick()" class="new-comment-form">
     <mat-form-field appearance="outline"
                     [ngClass]="{'mat-form-field-invalid': formControls['content'].invalid && formControls['content'].dirty}">
       <mat-label>{{ labels['content'] }}</mat-label>
-      <textarea matInput rows="2" [formControl]="formControls['content']" (blur)="onBlur('content')"></textarea>
 
-      <button
-        type="submit"
-        [disabled]="formControls['content'].invalid"
-        matSuffix
-        style="background-color: transparent;
-                 justify-content: center;
-                 align-items: center;
-                 width: 35px;
-                 height: 35px;
-                 border: none;">
-        <mat-icon id="add-comment-button" aria-hidden="false" aria-label="Add" fontIcon="send" color="primary">
-        </mat-icon>
-      </button>
+      <textarea matInput rows="3"
+                [formControl]="formControls['content']" (blur)="onBlur('content')"></textarea>
 
       <mat-error
         *ngIf="formControls['content'].invalid && formControls['content'].dirty">{{ errorMessages['content'] }}
@@ -51,17 +38,13 @@
     <button
       type="submit"
       [disabled]="formControls['content'].invalid"
+      title="Post the new comment"
       style="background-color: transparent;
-                 justify-content: center;
-                 align-items: center;
-                 width: 50px;
-                 height: 50px;
                  border: none;">
-      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="send" color="primary" style="font-size: 40px;
-                       width: 40px;
-                       height: 40px;
-                       margin-bottom: 20px;
-                       transform: rotate(-45deg);">
+      <mat-icon aria-hidden="false"
+                fontIcon="send" color="primary"
+
+                id="new-comment-icon">
       </mat-icon>
     </button>
   </form>

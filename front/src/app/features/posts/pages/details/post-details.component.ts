@@ -7,10 +7,12 @@ import {PostService} from "../../services/post.service";
 import {Subscription} from "rxjs";
 import {APP_CONSTANTS} from "../../../../shared/constants";
 import {MatIcon} from "@angular/material/icon";
-import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgClass, NgForOf, NgIf, TitleCasePipe} from "@angular/common";
 import {MatDivider} from "@angular/material/divider";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
+import {PostCommentComponent} from "../../../../core/components/post-comment/post-comment.component";
 
 @Component({
   selector: 'app-details',
@@ -28,7 +30,14 @@ import {MatInput} from "@angular/material/input";
     MatFormField,
     ReactiveFormsModule,
     MatInput,
-    NgForOf
+    NgForOf,
+    MatCard,
+    MatCardContent,
+    MatCardHeader,
+    MatCardSubtitle,
+    MatCardTitle,
+    TitleCasePipe,
+    PostCommentComponent
   ],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.scss'

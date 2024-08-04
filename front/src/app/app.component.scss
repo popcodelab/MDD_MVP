@@ -1,7 +1,6 @@
 //This pseudo-class selector is used within web components to apply styles to the host element
 // that contains the component.
 :host {
-  position: fixed;
   inset: 0 0 0 0;
   height: 100%;
   width: 100%;

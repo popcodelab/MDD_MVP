@@ -70,7 +70,9 @@ public class CommentServiceImpl implements CommentService {
         log.debug("Comment : {} saved", comment.getId());
         post.getCommentIds().add(newComment.getId());
         postRepository.save(post);
+
         CommentDto newCommentDto = modelMapper.map(newComment, CommentDto.class);
+        newCommentDto.setUsername(user.getUsername());
         log.debug("The comment id {} has been add to Post Id : {} by {} : ",
                 newCommentDto.getId(), newCommentDto.getUsername());
 

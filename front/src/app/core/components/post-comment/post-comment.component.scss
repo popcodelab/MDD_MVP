@@ -1,0 +1,41 @@
+/** Flex utilities */
+.comment-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.flex-80 {
+  flex: 80%;
+}
+
+
+.main-container {
+  height: 100vh;
+
+}
+
+p {
+  background-color: #EEEEEE;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.comment-infos{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1em;
+  margin-right:1em;
+  margin-bottom: 2em;
+}
+
+.post-creation-date{
+  font-size: x-small;
+}
+
+.post-author{
+  font-style: italic;
+  font-size: smaller;
+}

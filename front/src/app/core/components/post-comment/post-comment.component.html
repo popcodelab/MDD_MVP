@@ -1,0 +1,10 @@
+<div class="comment-container">
+
+  <p [ngClass]="{'flex-80': isLargeScreen$, 'small-p': !isLargeScreen$}">{{ comment.content }}</p>
+  <div class="comment-infos">
+    <span class="post-author">{{ comment.username }}</span>
+    <time class="post-creation-date" [dateTime]="comment.created_at | date:'yyyy-MM-dd'">{{ comment.created_at | date:'mediumDate' }}</time>
+  </div>
+
+
+</div>

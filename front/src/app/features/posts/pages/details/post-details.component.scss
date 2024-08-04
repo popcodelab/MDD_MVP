@@ -1,8 +1,45 @@
-#add-comment-button {
-  font-size: 25px;
-  width: 25px;
-  height: 25px;
-  padding: 0;
-  margin-bottom: 20px;
+#new-comment-icon {
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+  vertical-align: middle;
   transform: rotate(-45deg);
+
 }
+
+
+.comments-container {
+  // Apply these styles for screens greater than 'sm' breakpoint
+  @media (min-width: 600px) {
+    display: flex;
+    flex-direction: column;
+
+    // Target all direct children elements
+    & > * {
+      margin-bottom: 20px;
+    }
+
+    // Remove margin-bottom from the last child to avoid extra space
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.new-comment-container{
+  display: flex;
+  flex-direction: row;
+  gap:1rem;
+  justify-content: center;
+}
+
+.new-comment-form{
+  width: 90%;
+  & > *:first-child{
+    width: 90%;
+    padding: 1rem;;
+  }
+}
+
+
+

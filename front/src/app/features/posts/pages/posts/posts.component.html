@@ -1,6 +1,6 @@
 <div>
   <h2>Posts</h2>
-  <section class="flex">
+  <section class="posts-header-container">
     <button mat-raised-button color="primary" (click)="newPost()">Create</button>
     <button mat-button [matMenuTriggerFor]="menu">Sort by {{ sortBy }}
       <mat-icon [ngClass]="{'arrow-up': ascendingOrder}" fontIcon="arrow_drop_down_circle" aria-hidden="true"
