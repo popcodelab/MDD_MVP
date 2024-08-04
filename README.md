@@ -1,25 +1,117 @@
-# P6-Full-Stack-reseau-dev
+# MDD
+## Table of contents
 
-## Front
+- Description and goals
+- Installation
+- Database setup
+- Run application
+- Run tests
+- Technologies
+- Compodoc
+- Screenshots
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+## Description and goal
 
-Don't forget to install your node_modules before starting (`npm install`).
+MDD (Monde de Dév) is a social network project dedicated to developers:
+Project developed as part of the development of a project for my master's degree.
+ This repository contains both the frontend and backend code for a Minimum Viable Product version.
 
-### Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Clone the Project
 
-### Build
+Clone these repositories :
+> git clone https://github.com/popcodelab/MDD_MVP
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Install Dependencies
 
-### Where to start
+#### Back-End:
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+> mvn clean install
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+#### Front-End:
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
+> npm install
 
-Good luck!
+### Configuring the Back-End
+
+Open the `application.properties` file located in the `back/src/main/resources` directory to Replace the properties with your parameters:
+
+```properties
+spring.datasource.url=${APP_DB_URL}
+spring.datasource.username=${APP_DB_USERNAME}
+spring.datasource.password=${APP_DB_PASSWORD}
+```
+
+## Database setup 
+
+Make sure that you have MySQL installed on your system.
+
+1. Log into MySQL using the following command :
+> mysql -u `<username>` -p
+
+2. Create the database :
+
+> CREATE DATABASE `<database_name>`;
+
+3. Select the created database :
+> USE `<database_name>`;
+
+
+### Build the database
+
+Use the SQL script located in `ressources\sql\creates_db.sql`  to create the schema :
+
+> SOURCE `<path_to_script.sql>`;
+     
+
+
+
+## Run application
+
+1. Frontend
+   
+   - In your terminal, run the command below.
+    
+        ```bash
+        cd front
+        npm run start
+        ```
+
+     The frontend will launch in your browser at `http://localhost:4400`
+  
+2. Backend
+
+     - In a separate terminal, run the command below.
+
+          ```bash
+          cd back
+          mvn spring-boot:run
+          ```
+
+        The backend server will launch at `http://localhost:3005`
+
+---
+
+## Technologies
+Front-end :  
+![Static Badge](https://img.shields.io/badge/Angular-14.2.0-red)
+
+
+Back-end :  
+![Static Badge](https://img.shields.io/badge/Java-17.0.10-orange)
+![Static Badge](https://img.shields.io/badge/Spring_Boot-2.6.1-green)
+![Static Badge](https://img.shields.io/badge/Maven-4.0.0-purple)
+
+<br>
+<hr>
+
+ <div align="center">
+
+ [![forthebadge](https://forthebadge.com/images/badges/build-with-spring-boot.svg)](https://forthebadge.com)
+ [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
+ [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+ [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+</div>
+<hr/>
