@@ -66,7 +66,10 @@ public class AuthenticationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created : User registered successfully",
                     content = @Content(schema = @Schema(implementation = UserDto.class))),
-            @ApiResponse(responseCode = "400", description = "Bad request")})
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred")
+    })
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -94,16 +97,23 @@ public class AuthenticationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Return the User token - Authenticated successfully",
                     content = @Content(schema = @Schema(implementation = JwtDto.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized")})
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred")
+    })
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<Map<String, String>> login(final @RequestBody SignInDto signInDto) {
         try {
+            // Authenticate the user with the provided credentials
             Authentication authentication = this.authenticationService.authenticateUser(signInDto);
+            // Generate a JWT token for the authenticated user
             String token = jwtService.generateToken(authentication);
+            log.debug("token : {}", token);
+            // Return the token in the response body with a 200 OK status
             return ResponseEntity.ok(Collections.singletonMap("token", token));
         } catch (AuthenticationException e) {
+            // Return a 401 Unauthorized status if authentication fails
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }

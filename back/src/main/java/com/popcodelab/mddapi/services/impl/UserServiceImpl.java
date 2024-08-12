@@ -58,6 +58,18 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
+    public UserDto updateUser(UserDto userDto, Authentication authentication) {
+        UserDto loggedUserDto = getLoggedUser(authentication);
+        User user = userRepository.findById(loggedUserDto.getId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        userRepository.save(user);
+        log.debug("User Id {} - {} has been saved.",user.getId(),  user.getUsername());
+        UserDto updatedUser = modelMapper.map(user, UserDto.class);
+        return updatedUser;
+    }
+
     /**
      * Finds a user by name or email identifier.
      *

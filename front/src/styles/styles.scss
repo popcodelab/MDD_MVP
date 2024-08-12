@@ -36,6 +36,8 @@ $warn-color: mat.get-theme-color($mdd-theme, warn);
   --gray-100: #EEEEEE; // Background of comment
   --gray-200: #D9D9D9; // User avatar background
   --gray-700: #939393; // Placeholder text
+
+
   --mat-toolbar-standard-height: 94px;
   --mat-toolbar-mobile-height: 62px;
   --content-standard-height: calc(100vh - var(--mat-toolbar-standard-height));
@@ -59,9 +61,6 @@ body {
   "inter",
   "Helvetica Neue",
   sans-serif;
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
 }
 
 /** Links */
@@ -91,9 +90,12 @@ a:hover {
 
 /** MatSidenav */
 .mat-sidenav-content {
-  //min-height: 100%;
   padding: 1rem;
-  //height: 100vh;
+  //height: var(--content-standard-height);
+}
+
+.mat-sidenav-content-wrapper {
+  height: var(--content-standard-height);
 }
 
 /** Login and Register forms */
@@ -119,22 +121,107 @@ a:hover {
   margin-top: 1rem;
 }
 
-// TODO UNCOMMENT
+.avatar {
+  color: var(--gray-200);
+  background-color: transparent;
+  border-radius: 20%;
 
-//.back-link {
-//  grid-area: back-button;
-//  position: sticky;
+}
+
+mat-icon .avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+}
+
+
+/** Flex utilities */
+.flex {
+  --direction: row;
+  --justify: normal;
+  --gap: 1rem;
+  display: flex;
+  gap: var(--gap);
+  flex-direction: var(--direction);
+  justify-content: var(--justify);
+}
+
+.flex-col {
+  --direction: column;
+}
+
+.justify-start {
+  --justify: space-between;
+}
+
+.justify-between {
+  --justify: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.grow {
+  --flex-grow: 1;
+  flex-grow: var(--flex-grow);
+}
+
+/* Customized Material UI */
+
+mat-card.card {
+  --flex-direction: column;
+  --justify-content: space-between;
+  background-color: var(--gray-50);
+  display: flex;
+  flex-direction: var(--flex-direction);
+  justify-content: var(--justify-content);
+}
+
+mat-card-subtitle, .subtitle{
+  color: black;
+  padding-bottom: 0.5rem;
+}
+
+mat-divider {
+  --mat-divider-color: black;
+}
+
+/* Layout */
+
+.mat-sidenav-content-wrapper > * {
+  & > main {
+    --padding-page: 1rem;
+    min-height: 100%;
+    padding: var(--padding-page);
+  }
+}
+
+/* Grid utilities */
+//Inspiration for auto-grid from Kevin Powell : https://youtu.be/p3_xN2Zp1TY?si=BTdcz5FLdSmwwzZg&t=163
+//.auto-grid {
+//  --min-column-size: 20rem;
+//  --minmax-min: min(var(--min-column-size), 100%);
+//  --minmax-max: 1fr;
 //  display: grid;
-//  place-content: center;
-//  justify-content: center;
-//  justify-self: center;
-//  top: 0;
-//  left: 0;
-//  width: 100%;
-//  height: fit-content;
+//  grid-template-columns: repeat(auto-fit, minmax(var(--minmax-min), var(--minmax-max)));
+//  gap: 1rem;
 //}
 
-
+// Makes the logo responsive
+#mdd-logo-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 
 

@@ -38,16 +38,17 @@ mat-card-subtitle, .post-subtitle {
 }
 
 @media (width < 599px) {
-  section.posts-header-container {
+  div.flex {
+    --direction: column;
     align-items: center;
 
-    & a {
+    & button {
       width: fit-content;
     }
   }
 }
 
-/** Menu item */
+/** Menu items */
 .menu-item-container {
   display: inline-flex;
 }
@@ -68,3 +69,5 @@ mat-card-subtitle, .post-subtitle {
 .arrow-up {
   transform: rotate(180deg);
 }
+
+

@@ -1,12 +1,12 @@
-<div>
+<main class="flex flex-col">
   <h2>Posts</h2>
-  <section class="posts-header-container">
+  <div class="flex justify-between">
     <button mat-raised-button color="primary" (click)="newPost()">Create</button>
     <button mat-button [matMenuTriggerFor]="menu">Sort by {{ sortBy }}
       <mat-icon [ngClass]="{'arrow-up': ascendingOrder}" fontIcon="arrow_drop_down_circle" aria-hidden="true"
                 aria-label="Sort arrow"></mat-icon>
     </button>
-    <mat-menu #menu="matMenu" xPosition="after" yPosition="below">
+    <mat-menu #menu="matMenu" >
       <button mat-menu-item (click)="onSortClick('date', sortDirections['date'])" class="menu-item">
         <div class="menu-item-container">
           <strong class="menu-item-text">Date</strong>
@@ -24,9 +24,9 @@
         </div>
       </button>
     </mat-menu>
-  </section>
+  </div>
   <mat-divider class="posts"></mat-divider>
-  <section class="posts-container">
+  <div class="posts-container">
     <div *ngFor="let post of posts; trackBy: trackByPostId">
       <a [routerLink]="['/posts', post.id]">
         <mat-card class="card">
@@ -43,6 +43,5 @@
         </mat-card>
       </a>
     </div>
-  </section>
-
-</div>
+  </div>
+</main>

@@ -49,7 +49,7 @@ export class MatSidenavService {
    *
    * @param {MatSidenav} matSidenav - The Material Sidenav instance to be set.
    */
-  public setMatSidenav(matSidenav: MatSidenav) {
+  public setMatSidenav(matSidenav: MatSidenav): void {
     this.matSidenav = matSidenav;
   }
 
@@ -67,7 +67,7 @@ export class MatSidenavService {
    *
    * @return {Promise<void>} - A promise that resolves when the toggling is completed.
    */
-  public toggleMatSidenav() {
+  public toggleMatSidenav(): void {
     this.matSidenav.toggle().then(() => {
       this.isOpened = this.matSidenav.opened;
     });
@@ -77,7 +77,7 @@ export class MatSidenavService {
    * Closes the Material Sidenav and updates the isOpened flag accordingly.
    * @return {void}
    */
-  public closeMatSidenav() {
+  public closeMatSidenav(): void {
     this.matSidenav.close().then(() => {
       this.isOpened = this.matSidenav.opened;
     });

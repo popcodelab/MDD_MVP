@@ -1,10 +1,9 @@
 mat-toolbar {
   border-bottom: 1px solid black;
-
+  // first a child
   & > a {
     margin-right: auto;
     padding-top: 0.25rem;
-
     & > img {
       display: block;
     }
@@ -13,18 +12,12 @@ mat-toolbar {
 
 ul.posts-header-container {
   align-items: center;
-
   & > li:not(:last-child) {
     font-size: 1.25rem;
     font-weight: 500;
   }
 }
 
-.avatar {
-  color: var(--gray-200);
-  background-color: transparent;
-  border-radius: 50%;
-}
 
 a.active {
   color: var(--accent-color);

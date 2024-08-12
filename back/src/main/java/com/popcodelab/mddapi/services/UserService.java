@@ -17,6 +17,15 @@ public interface UserService {
     UserDto getLoggedUser(final Authentication authentication);
 
     /**
+     * Updates the information of a user.
+     *
+     * @param userDto       The updated UserDto object containing the new information of the user.
+     * @param authentication The authentication object representing the logged user.
+     * @return The UserDto object representing the updated information of the user.
+     */
+    UserDto updateUser(UserDto userDto, Authentication authentication);
+
+    /**
      * Unsubscribes a user from a topic.
      *
      * @param topicId        The ID of the topic.

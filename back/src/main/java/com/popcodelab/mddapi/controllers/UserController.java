@@ -60,6 +60,19 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
+    @PutMapping
+    @Operation(summary = "Update user data.", description = "Update the information about the logged user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated the user"),
+            @ApiResponse(responseCode = "400", description = "Invalid UserDto supplied"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized request"),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred")
+    })
+    public UserDto updateUser(@RequestBody UserDto userDto, Authentication authentication) {
+        return userService.updateUser(userDto, authentication);
+    }
+
 
     @DeleteMapping("/topic/{topicId}")
     @Operation(summary = "Deletes a user topic subscription.",
