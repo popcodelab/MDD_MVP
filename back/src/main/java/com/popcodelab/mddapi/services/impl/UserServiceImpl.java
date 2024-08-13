@@ -58,16 +58,33 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
+    /**
+     * Updates the information of a user.
+     *
+     * @param userDto       The updated UserDto object containing the new information of the user.
+     * @param authentication The authentication object representing the logged user.
+     * @return The updated UserDto object.
+     */
     public UserDto updateUser(UserDto userDto, Authentication authentication) {
         UserDto loggedUserDto = getLoggedUser(authentication);
-        User user = userRepository.findById(loggedUserDto.getId())
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User user = getUserOrThrowNotFound(loggedUserDto);
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         userRepository.save(user);
         log.debug("User Id {} - {} has been saved.",user.getId(),  user.getUsername());
-        UserDto updatedUser = modelMapper.map(user, UserDto.class);
-        return updatedUser;
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    /**
+     * Retrieves a user from the repository based on the logged user DTO.
+     *
+     * @param loggedUserDto the DTO representing the logged user
+     * @return the user, if found
+     * @throws EntityNotFoundException if the user is not found
+     */
+    private User getUserOrThrowNotFound(final UserDto loggedUserDto) {
+        return userRepository.findById(loggedUserDto.getId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
     /**
