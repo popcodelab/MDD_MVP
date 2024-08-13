@@ -118,16 +118,88 @@ Once the backend started, the documentation can be browsed at : http://localhost
 
 Use the authentication endpoint to get a JWT token to access to the protected routes.
 
----
+
 
 ## Technologies
+
+<table style="border: none">
+<tr style="border: none">
+  <td style="border: none">HTML5</td><td style="border: none">
+  <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/html-5.svg?sanitize=true" alt="HTML5"></td>
+</tr>
+<tr style="border: none">
+  <td style="border: none">TypeScript 5.4.3</td><td style="border: none">
+  <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/typescript.svg?sanitize=true" alt="TypeScript"></td>
+</tr>
+<tr style="border: none">
+  <td style="border: none">JavaScript</td><td style="border: none">
+  <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/javascript.svg?sanitize=true" alt="JavaScript"></td>
+</tr>
+<tr style="border: none">
+  <td style="border: none">CSS3</td><td style="border: none">
+  <img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/css-3.svg?sanitize=true" alt="CSS3"></td>
+</tr>
+
+<tr style="border: none"> 
+  <td style="border: none">Angular 17.3.8</td>
+  <td style="border: none"><img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/angular.svg?sanitize=true" alt="Angular 14.1.3"></td>
+</tr>
+
+<tr style="border: none">  
+  <td style="border: none">Compodoc 1.1.25</td>
+  <td style="border: none"><img style="height: 40px;width: 40px;" src="https://raw.github.com/popcodelab/svg-icons/main/compodoc.svg?sanitize=true" alt="CompoDoc 1.1.23"></td>
+</tr>
+<tr style="border: none"> 
+  <td style="border: none">Angular Material 17.3.0</td>
+  <td style="border: none"><img style="height: 45px;width: 45px;padding-left: 5px" src="https://raw.github.com/popcodelab/svg-icons/main/material.svg?sanitize=true" alt="Angular Material 14.1.0"></td>
+</tr>
+<tr style="border: none"> 
+  <td style="border: none">MySQL 8</td>
+  <td style="border: none"><img style="height: 55px;width: 55px;padding-left: 5px" src="https://raw.github.com/popcodelab/svg-icons/main/mysql.svg?sanitize=true" alt="MySQL 8"></td>
+</tr>
+<tr style="border: none"> 
+  <td style="border: none">Java 17</td>
+  <td style="border: none"><img style="height: 45px;width: 45px;padding-left: 5px" src="https://raw.github.com/popcodelab/svg-icons/main/java.svg?sanitize=true" alt="Java 17"></td>
+</tr>
+<tr style="border: none"> 
+  <td style="border: none">Spring Boot 3.3.0</td>
+  <td style="border: none"><img style="height: 40px;width: 40px;padding-left: 5px" src="https://raw.github.com/popcodelab/svg-icons/main/spring.svg?sanitize=true" alt="Spring Boot 3.3.0"></td>
+</tr>
+</table>
+
+
+
+
+
+## Compodoc
+
+To generate the documentation, if compodoc is not installed, follow the instructions bellow :
+
+instal compodoc : `npm install @compodoc/compodoc`
+
+Once installed :
+- To generate the documentation run the command : `npm run compodoc`
+- To Serve it on http://127.0.0.1:8080  : `npm run compodoc:serve`
+
+![Compodoc](./front/src/assets/screenshots/compodoc.png)
+
+
+## Authors
+
+POP's Code Lab
+
+## Screenshots
+ 
+<img src="./front/src/assets/screenshots/login.png" width="350">
+
+---
 Front-end :  
-![Static Badge](https://img.shields.io/badge/Angular-14.2.0-red)
+![Static Badge](https://img.shields.io/badge/Angular-17.3.8-red)
 
 
 Back-end :  
 ![Static Badge](https://img.shields.io/badge/Java-17.0.10-orange)
-![Static Badge](https://img.shields.io/badge/Spring_Boot-2.6.1-green)
+![Static Badge](https://img.shields.io/badge/Spring_Boot-3.3.0-green)
 ![Static Badge](https://img.shields.io/badge/Maven-4.0.0-purple)
 
 
@@ -146,19 +218,3 @@ Back-end :
 </div>
 <hr/>
 
-## Compodoc
-
-To generate the documentation, if compodoc is not installed, follow the instructions bellow :
-
-instal compodoc : `npm install @compodoc/compodoc`
-
-Once installed :
-- To generate the documentation run the command : `npm run compodoc`
-- To Serve it on http://127.0.0.1:8080  : `npm run compodoc:serve`
-
-## Authors
-
-POP's Code Lab
-
-## Screenshots
-![Compodoc](./src/assets/screenshots/compodoc.png)
