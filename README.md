@@ -2,10 +2,11 @@
 ## Table of contents
 
 - Description and goals
+- App features
 - Installation
 - Database setup
 - Run application
-- Run tests
+- Swagger (OpenAPI)
 - Technologies
 - Compodoc
 - Screenshots
@@ -15,6 +16,26 @@
 MDD (Monde de Dév) is a social network project dedicated to developers:
 Project developed as part of the development of a project for my master's degree.
  This repository contains both the frontend and backend code for a Minimum Viable Product version.
+
+## App features
+
+### User management
+- User registration
+- Profile management
+- User session
+- Logout
+
+### Topic management
+- List all topics
+- Subscribe to topic
+- Unsubscribe from topic
+
+### Post management
+- View feed with sort by date or by title
+- Create post
+- Read post details
+- Comment post
+
 
 ## Installation
 
@@ -65,8 +86,6 @@ Use the SQL script located in `ressources\sql\creates_db.sql`  to create the sch
 > SOURCE `<path_to_script.sql>`;
      
 
-
-
 ## Run application
 
 1. Frontend
@@ -93,6 +112,14 @@ Use the SQL script located in `ressources\sql\creates_db.sql`  to create the sch
 
 ---
 
+## Swagger documentation
+
+Once the backend started, the documentation can be browsed at : http://localhost:3005/swagger-ui/index.html
+
+Use the authentication endpoint to get a JWT token to access to the protected routes.
+
+---
+
 ## Technologies
 Front-end :  
 ![Static Badge](https://img.shields.io/badge/Angular-14.2.0-red)
@@ -102,6 +129,9 @@ Back-end :
 ![Static Badge](https://img.shields.io/badge/Java-17.0.10-orange)
 ![Static Badge](https://img.shields.io/badge/Spring_Boot-2.6.1-green)
 ![Static Badge](https://img.shields.io/badge/Maven-4.0.0-purple)
+
+
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 
 <br>
 <hr>
