@@ -10,12 +10,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The TopicController class is responsible for handling requests related to topics.
+ */
 @RestController
 @RequestMapping("/api/topics")
 @Log4j2
@@ -43,6 +48,15 @@ public class TopicController {
         this.topicService = topicService;
     }
 
+    /**
+     * Retrieves all topics.
+     *
+     * @return A ResponseEntity containing a list of TopicDto objects representing the retrieved topics.
+     *         The HTTP status code is set to 200 (OK) if topics are found.
+     *         The HTTP status code is set to 401 (Unauthorized) if the user must authenticate itself.
+     *         The HTTP status code is set to 404 (Not Found) if no topics are found.
+     *         The HTTP status code is set to 500 (Internal Server Error) if an unexpected error occurs.
+     */
     @GetMapping
     @Operation(summary = "Get all the topics")
     @ApiResponses(value = {
@@ -54,8 +68,9 @@ public class TopicController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred"
             )
     })
-    public List<TopicDto> getAllTopics() {
+    public ResponseEntity<List<TopicDto>> getAllTopics() {
         log.info("Seeking for the topics...");
-        return topicService.getAllTopics();
+        List<TopicDto> topics = topicService.getAllTopics();
+        return new ResponseEntity<>(topics, HttpStatus.OK);
     }
 }

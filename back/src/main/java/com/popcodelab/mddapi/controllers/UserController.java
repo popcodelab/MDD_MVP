@@ -14,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The UserController class handles API endpoints related to user management.
+ */
 @RestController
 @RequestMapping("/api/me")
 @Log4j2
@@ -60,6 +63,13 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
+    /**
+     * Updates the information about the logged user.
+     *
+     * @param userDto The updated user data as a UserDto object.
+     * @param authentication The authentication object representing the logged user.
+     * @return The ResponseEntity containing the updated UserDto object.
+     */
     @PutMapping
     @Operation(summary = "Update user data.", description = "Update the information about the logged user")
     @ApiResponses(value = {
@@ -69,11 +79,18 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found"),
             @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred")
     })
-    public UserDto updateUser(@RequestBody UserDto userDto, Authentication authentication) {
-        return userService.updateUser(userDto, authentication);
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, Authentication authentication) {
+        UserDto updatedUser = userService.updateUser(userDto, authentication);
+        return ResponseEntity.ok(updatedUser);
     }
 
-
+    /**
+     * Deletes a user topic subscription.
+     *
+     * @param topicId The ID of the topic to unsubscribe from
+     * @param authentication The authentication object containing user credentials
+     * @return A ResponseEntity containing the updated UserDto object
+     */
     @DeleteMapping("/topic/{topicId}")
     @Operation(summary = "Deletes a user topic subscription.",
             description = "Removes the link between a user and topic subscription")
@@ -96,10 +113,18 @@ public class UserController {
                     description = "Internal Server Error : An unexpected error occurred"
             )
     })
-    public UserDto unsubscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
-        return userService.unsubscribesTopic(topicId, authentication);
+    public ResponseEntity<UserDto> unsubscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
+        UserDto updatedUserDto = userService.unsubscribesTopic(topicId, authentication);
+        return ResponseEntity.ok(updatedUserDto);
     }
 
+    /**
+     * Creates a new user topic subscription by adding a link between a user and a topic subscription.
+     *
+     * @param topicId The ID of the topic to be subscribed to.
+     * @param authentication The authentication credentials of the user.
+     * @return ResponseEntity<UserDto> The updated UserDto object representing the user with the subscription added.
+     */
     @PostMapping("/topic/{topicId}")
     @Operation(summary = "Creates a new user topic subscription.",
             description = "Adds a link between a user and a topic subscription")
@@ -126,7 +151,8 @@ public class UserController {
                     description = "Internal Server Error : An unexpected error occurred"
             )
     })
-    public UserDto subscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
-        return userService.subscribeToTopic(topicId, authentication);
+    public ResponseEntity<UserDto> subscribesTopic(final @PathVariable Long topicId, final Authentication authentication) {
+        UserDto updatedUserDto = userService.subscribeToTopic(topicId, authentication);
+        return ResponseEntity.ok(updatedUserDto);
     }
 }
