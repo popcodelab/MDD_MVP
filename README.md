@@ -190,7 +190,14 @@ POP's Code Lab
 
 ## Screenshots
  
-<img src="./front/src/assets/screenshots/login.png" width="350">
+<img src="./front/src/assets/screenshots/welcome.png" width="350" alt="Welcome">
+<img src="./front/src/assets/screenshots/register.png" width="350" alt="Register">
+<img src="./front/src/assets/screenshots/login.png" width="350" alt="Login">
+<img src="./front/src/assets/screenshots/topics.png" width="350" alt="Topics">
+<img src="./front/src/assets/screenshots/write_post.png" width="350" alt="Write a post">
+<img src="./front/src/assets/screenshots/posts_1.png" width="350" alt="List of posts">
+<img src="./front/src/assets/screenshots/me.png" width="350" alt="Profile">
+<img src="./front/src/assets/screenshots/responsive.png" width="350" alt="Responsive">
 
 ---
 Front-end :  
