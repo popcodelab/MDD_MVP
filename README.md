@@ -145,3 +145,20 @@ Back-end :
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 </div>
 <hr/>
+
+## Compodoc
+
+To generate the documentation, if compodoc is not installed, follow the instructions bellow :
+
+instal compodoc : `npm install @compodoc/compodoc`
+
+Once installed :
+- To generate the documentation run the command : `npm run compodoc`
+- To Serve it on http://127.0.0.1:8080  : `npm run compodoc:serve`
+
+## Authors
+
+POP's Code Lab
+
+## Screenshots
+![Compodoc](./src/assets/screenshots/compodoc.png)

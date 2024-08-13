@@ -1,0 +1,1790 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">front documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >PostService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/features/posts/services/post.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents a service that provides methods to interact with posts.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_posts" >_posts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#apiUrl" >apiUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#posts$" >posts$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addComment" >addComment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applySortDirection" >applySortDirection</a>
+                            </li>
+                            <li>
+                                <a href="#createPost" >createPost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createPostFromInput" >createPostFromInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#filterPostsByTopicIds" >filterPostsByTopicIds</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getAllTopicPosts" >getAllTopicPosts</a>
+                            </li>
+                            <li>
+                                <a href="#getComments" >getComments</a>
+                            </li>
+                            <li>
+                                <a href="#getPostById" >getPostById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSortFunctionBy" >getSortFunctionBy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#sortByDate" >sortByDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#sortByTitle" >sortByTitle</a>
+                            </li>
+                            <li>
+                                <a href="#sortPostsBy" >sortPostsBy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(httpClient: HttpClient, sessionService: <a href="../injectables/SessionService.html" target="_self">SessionService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/features/posts/services/post.service.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for initializing an instance of the class.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>httpClient</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>The HttpClient instance to be used for making HTTP requests.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sessionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SessionService.html" target="_self" >SessionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>The SessionService instance for managing user sessions.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addComment"></a>
+                    <span class="name">
+                        <span ><b>addComment</b></span>
+                        <a href="#addComment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addComment(comment: <a href="../interfaces/Comment.html" target="_self">Pick&lt;Comment | &quot;postId&quot; | &quot;content&quot;&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>comment</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Comment.html" target="_self" >Pick&lt;Comment | &quot;postId&quot; | &quot;content&quot;&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Comment.html" target="_self" >Observable&lt;Comment&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applySortDirection"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>applySortDirection</b></span>
+                        <a href="#applySortDirection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applySortDirection(sortOrder: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies the specified sort direction to the posts array.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sortOrder</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The sort direction to apply. Can be either &#39;asc&#39; or &#39;desc&#39;.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPost"></a>
+                    <span class="name">
+                        <span ><b>createPost</b></span>
+                        <a href="#createPost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createPost(post: <a href="../interfaces/Post.html" target="_self">Pick&lt;Post | &quot;title&quot; | &quot;content&quot; | &quot;topicId&quot;&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new post.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>post</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Pick&lt;Post | &quot;title&quot; | &quot;content&quot; | &quot;topicId&quot;&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The post object containing the title, content, and topicId.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Post.html" target="_self" >Observable&lt;Post&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An Observable that emits the created post.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPostFromInput"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>createPostFromInput</b></span>
+                        <a href="#createPostFromInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createPostFromInput(inputPost: <a href="../interfaces/Post.html" target="_self">Pick&lt;Post | &quot;title&quot; | &quot;content&quot; | &quot;topicId&quot;&gt;</a>, user: <a href="../interfaces/User.html" target="_self">User</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:207</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new post object based on the inputPost and user data.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>inputPost</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Pick&lt;Post | &quot;title&quot; | &quot;content&quot; | &quot;topicId&quot;&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The input post object containing title, content, and topic ID.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The user object representing the creator of the post.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Post.html" target="_self" >Omit&lt;Post, &quot;id&quot; | &quot;topicTitle&quot; | &quot;commentIds&quot;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The newly created post object without ID, topic title, and comment IDs.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterPostsByTopicIds"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>filterPostsByTopicIds</b></span>
+                        <a href="#filterPostsByTopicIds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filterPostsByTopicIds(posts: <a href="../interfaces/Post.html" target="_self">Post[]</a>, topicsIds: number[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filters an array of posts by comparing their topic IDs with the given topic IDs.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>posts</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Post[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The array of posts to be filtered.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>topicsIds</td>
+                                            <td>
+                                                        <code>number[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The array of topic IDs to filter the posts by.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllTopicPosts"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>getAllTopicPosts</b></span>
+                        <a href="#getAllTopicPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllTopicPosts(topicsIds: number[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieve all posts related to the specified topic IDs.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>topicsIds</td>
+                                            <td>
+                                                        <code>number[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>An array of topic IDs to retrieve posts for.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Post.html" target="_self" >Observable&lt;Post[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>An Observable that emits an array of Post objects.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getComments"></a>
+                    <span class="name">
+                        <span ><b>getComments</b></span>
+                        <a href="#getComments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getComments(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>postId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Comment.html" target="_self" >Observable&lt;Comment[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostById"></a>
+                    <span class="name">
+                        <span ><b>getPostById</b></span>
+                        <a href="#getPostById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPostById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a post by its ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The ID of the post to retrieve.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Post.html" target="_self" >Observable&lt;Post&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>An Observable that emits the retrieved Post object.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSortFunctionBy"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getSortFunctionBy</b></span>
+                        <a href="#getSortFunctionBy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSortFunctionBy(sortField: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns a sorting function based on the provided sort field.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sortField</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The field to sort by. Possible values are &#39;date&#39; and &#39;title&#39;.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>A sorting function that takes two Post objects as arguments and returns a number representing the order.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortByDate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sortByDate</b></span>
+                        <a href="#sortByDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sortByDate(a: <a href="../interfaces/Post.html" target="_self">Post</a>, b: <a href="../interfaces/Post.html" target="_self">Post</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sorts an array of Posts by date.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">              zero if they are the same date,
+              or a positive number if `a` is later than `b`.</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>a</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Post</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The first Post object to compare.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>b</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Post</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The second Post object to compare.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>A negative number if <code>a</code> is earlier than <code>b</code>,
+ zero if they are the same date,
+ or a positive number if <code>a</code> is later than <code>b</code>.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortByTitle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sortByTitle</b></span>
+                        <a href="#sortByTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sortByTitle(a: <a href="../interfaces/Post.html" target="_self">Post</a>, b: <a href="../interfaces/Post.html" target="_self">Post</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sorts an array of Post objects by their title in descending order.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">                a positive number if `a` is alphabetically after `b` based on their title,
+                or zero if their titles are identical or cannot be compared.</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>a</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Post</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The first Post object to compare.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>b</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Post.html" target="_self" >Post</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The second Post object to compare.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>A negative number if <code>a</code> is alphabetically before <code>b</code> based on their title,
+a positive number if <code>a</code> is alphabetically after <code>b</code> based on their title,
+or zero if their titles are identical or cannot be compared.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortPostsBy"></a>
+                    <span class="name">
+                        <span ><b>sortPostsBy</b></span>
+                        <a href="#sortPostsBy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sortPostsBy(sortField: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sortOrder: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/features/posts/services/post.service.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Sorts the posts array by the given sortField and sortOrder.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sortField</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>The field to sort by.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sortOrder</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;desc&#x27;</code>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>The sort direction.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_posts"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_posts</b></span>
+                        <a href="#_posts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Post.html" target="_self" >BehaviorSubject&lt;Post[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;Post[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/posts/services/post.service.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Represents a BehaviorSubject variable for posts.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apiUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>apiUrl</b></span>
+                        <a href="#apiUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.apiUrl + &#x27;/posts&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/posts/services/post.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The URL for the API endpoint to get posts.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="posts$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>posts$</b></span>
+                        <a href="#posts$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Post.html" target="_self" >Observable&lt;Post[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._posts.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/features/posts/services/post.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Represents the observable variable &#39;posts$&#39;, which emits an array of Post objects.</p>
+<p>This variable is used to obtain an observable that emits an array of Post objects. It is an
+instance of the Observable class and provides a convenient way to retrieve the current value
+as an array of Post objects, or subscribe to future updates.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &#x27;@angular/core&#x27;;
+import {BehaviorSubject, mergeMap, Observable, of, switchMap, take, tap} from &quot;rxjs&quot;;
+import {environment} from &quot;../../../../environments/environment&quot;;
+import {Post} from &quot;../interfaces/post&quot;;
+import {Comment} from &quot;../interfaces/comment&quot;;
+import {HttpClient} from &quot;@angular/common/http&quot;;
+import {SessionService} from &quot;../../auth/services/session.service&quot;;
+import {Topic} from &quot;../../topics/interfaces/topic&quot;;
+import {APP_CONSTANTS} from &quot;../../../shared/constants&quot;;
+import {User} from &quot;../../auth/interfaces/User&quot;;
+
+/**
+ * Represents a service that provides methods to interact with posts.
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class PostService {
+
+  /**
+   * The URL for the API endpoint to get posts.
+   *
+   * @type {string}
+   */
+  private apiUrl: string &#x3D; environment.apiUrl + &#x27;/posts&#x27;;
+  /**
+   * Represents a BehaviorSubject variable for posts.
+   */
+  private _posts: BehaviorSubject&lt;Post[]&gt; &#x3D; new BehaviorSubject&lt;Post[]&gt;([]);
+  /**
+   * Represents the observable variable &#x27;posts$&#x27;, which emits an array of Post objects.
+
+   * @description
+   * This variable is used to obtain an observable that emits an array of Post objects. It is an
+   * instance of the Observable class and provides a convenient way to retrieve the current value
+   * as an array of Post objects, or subscribe to future updates.
+   */
+  public posts$: Observable&lt;Post[]&gt; &#x3D; this._posts.asObservable();
+
+  /**
+   * Constructor for initializing an instance of the class.
+   *
+   * @param {HttpClient} httpClient - The HttpClient instance to be used for making HTTP requests.
+   * @param {SessionService} sessionService - The SessionService instance for managing user sessions.
+   */
+  constructor(private httpClient: HttpClient,
+              private sessionService: SessionService) {
+    this.sessionService.topicSubscriptions$.pipe(
+      mergeMap((topics: Topic[]) &#x3D;&gt; {
+        const topicsIds: number[] &#x3D; topics.map((topic: Topic) &#x3D;&gt; topic.id);
+        return this.getAllTopicPosts(topicsIds);
+      })
+    ).subscribe();
+  }
+
+  /**
+   * Retrieve all posts related to the specified topic IDs.
+   *
+   * @param {number[]} topicsIds - An array of topic IDs to retrieve posts for.
+   * @return {Observable&lt;Post[]&gt;} - An Observable that emits an array of Post objects.
+   */
+  public getAllTopicPosts(topicsIds: number[]): Observable&lt;Post[]&gt; {
+    return this.httpClient.get&lt;Post[]&gt;(this.apiUrl).pipe(
+      tap((posts: Post[]) &#x3D;&gt; {
+        this.filterPostsByTopicIds(posts, topicsIds);
+      })
+    );
+  }
+
+  /**
+   * Retrieves a post by its ID.
+   *
+   * @param {number} id - The ID of the post to retrieve.
+   * @returns {Observable&lt;Post&gt;} - An Observable that emits the retrieved Post object.
+   */
+  getPostById(id: number): Observable&lt;Post&gt; {
+    return of(this._posts.value.find((post: Post) &#x3D;&gt; post.id &#x3D;&#x3D;&#x3D; id)).pipe(
+      switchMap((post: Post | undefined) &#x3D;&gt; {
+          return post
+            ? of(post)
+            : this.httpClient.get&lt;Post&gt;(&#x60;${this.apiUrl}/${id}&#x60;).pipe(
+              tap((fetchedPost: Post) &#x3D;&gt; {
+                this._posts.next([...this._posts.value, fetchedPost]);
+              })
+            );
+        }
+      )
+    );
+  }
+
+  /**
+   * Filters an array of posts by comparing their topic IDs with the given topic IDs.
+   *
+   * @param {Post[]} posts - The array of posts to be filtered.
+   * @param {number[]} topicsIds - The array of topic IDs to filter the posts by.
+   *
+   * @private
+   */
+  private filterPostsByTopicIds(posts: Post[], topicsIds: number[]): void {
+    const filteredPosts: Post[] &#x3D; posts.filter((post: Post) &#x3D;&gt; topicsIds.includes(post.topicId));
+    this._posts.next(filteredPosts);
+  }
+
+  /**
+   * Sorts an array of Posts by date.
+   *
+   * @param {Post} a - The first Post object to compare.
+   * @param {Post} b - The second Post object to compare.
+   * @return {number} - A negative number if &#x60;a&#x60; is earlier than &#x60;b&#x60;,
+   *                   zero if they are the same date,
+   *                   or a positive number if &#x60;a&#x60; is later than &#x60;b&#x60;.
+   * @private
+   */
+  private sortByDate(a: Post, b: Post): number {
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  }
+
+  /**
+   * Sorts an array of Post objects by their title in descending order.
+   *
+   * @param {Post} a - The first Post object to compare.
+   * @param {Post} b - The second Post object to compare.
+   * @returns {number} - A negative number if &#x60;a&#x60; is alphabetically before &#x60;b&#x60; based on their title,
+   *                     a positive number if &#x60;a&#x60; is alphabetically after &#x60;b&#x60; based on their title,
+   *                     or zero if their titles are identical or cannot be compared.
+   * @private
+   */
+  private sortByTitle(a: Post, b: Post): number {
+    return b.title.localeCompare(a.title);
+  }
+
+  /**
+   * Sorts the posts array by the given sortField and sortOrder.
+   *
+   * @param {string} sortField - The field to sort by.
+   * @param {string} [sortOrder&#x3D;&#x27;desc&#x27;] - The sort direction.
+   * @return {void}
+   */
+  sortPostsBy(sortField: string, sortOrder: string &#x3D; &#x27;desc&#x27;): void {
+    console.debug(&#x60;Sort by: ${sortField} - Direction: ${sortOrder}&#x60;);
+
+    if (!this._posts.value) return;
+
+    let sortFunction &#x3D; this.getSortFunctionBy(sortField);
+    this._posts.value.sort(sortFunction);
+    this.applySortDirection(sortOrder);
+  }
+
+  /**
+   * Returns a sorting function based on the provided sort field.
+   *
+   * @param {string} sortField - The field to sort by. Possible values are &#x27;date&#x27; and &#x27;title&#x27;.
+   * @private
+   * @return {(a: Post, b: Post) &#x3D;&gt; number} - A sorting function that takes two Post objects as arguments and returns a number representing the order.
+   */
+  private getSortFunctionBy(sortField: string): (a: Post, b: Post) &#x3D;&gt; number {
+    switch (sortField) {
+      case &#x27;date&#x27;:
+        return this.sortByDate;
+      case &#x27;title&#x27;:
+        return this.sortByTitle;
+      default:
+        return this.sortByDate;
+    }
+  }
+
+  /**
+   * Applies the specified sort direction to the posts array.
+   *
+   * @param {string} sortOrder - The sort direction to apply. Can be either &#x27;asc&#x27; or &#x27;desc&#x27;.
+   * @private
+   * @return {void}
+   */
+  private applySortDirection(sortOrder: string): void {
+    if (sortOrder &#x3D;&#x3D;&#x3D; &#x27;asc&#x27;) {
+      this._posts.value.reverse();
+    }
+  }
+
+  /**
+   * Creates a new post.
+   *
+   * @param post - The post object containing the title, content, and topicId.
+   * @returns An Observable that emits the created post.
+   * @throws Error if the user is not authenticated.
+   */
+  createPost(post: Pick&lt;Post, &#x27;title&#x27; | &#x27;content&#x27; | &#x27;topicId&#x27;&gt;): Observable&lt;Post&gt; {
+    return this.sessionService.sessionUser$.pipe(
+      take(1),
+      switchMap(loggedUser &#x3D;&gt; {
+        if (!loggedUser) {
+          throw new Error(APP_CONSTANTS.ERROR_MESSAGES.MUST_BE_AUTHENTICATED);
+        }
+        return this.httpClient.post&lt;Post&gt;(this.apiUrl, this.createPostFromInput(post, loggedUser));
+      })
+    );
+  }
+
+  /**
+   * Creates a new post object based on the inputPost and user data.
+   *
+   * @param {Pick&lt;Post, &#x27;title&#x27; | &#x27;content&#x27; | &#x27;topicId&#x27;&gt;} inputPost - The input post object containing title, content, and topic ID.
+   * @param {User} user - The user object representing the creator of the post.
+   * @returns {Omit&lt;Post, &#x27;id&#x27; | &#x27;topicTitle&#x27; | &#x27;commentIds&#x27;&gt;} The newly created post object without ID, topic title, and comment IDs.
+   * @private
+   */
+  private createPostFromInput(inputPost: Pick&lt;Post, &#x27;title&#x27; | &#x27;content&#x27; | &#x27;topicId&#x27;&gt;, user: User): Omit&lt;Post, &#x27;id&#x27; | &#x27;topicTitle&#x27; | &#x27;commentIds&#x27;&gt; {
+    return {
+      title: inputPost.title,
+      content: inputPost.content,
+      username: user.username,
+      userId: user.id,
+      topicId: inputPost.topicId,
+      created_at: new Date()
+    };
+  }
+
+  getComments(postId: number): Observable&lt;Comment[]&gt; {
+    return this.httpClient.get&lt;Comment[]&gt;(&#x60;${this.apiUrl}/${postId}/comments&#x60;);
+  }
+
+  addComment(comment: Pick&lt;Comment, &#x27;postId&#x27; | &#x27;content&#x27;&gt;): Observable&lt;Comment&gt; {
+    return this.sessionService.sessionUser$.pipe(
+      take(1),
+      switchMap(currentUser &#x3D;&gt; {
+        if (!currentUser) {
+          throw new Error(APP_CONSTANTS.ERROR_MESSAGES.MUST_BE_AUTHENTICATED);
+        }
+        const commentDto: Omit&lt;Comment, &#x27;id&#x27;&gt; &#x3D; {
+          content: comment.content,
+          userId: currentUser.id,
+          username: currentUser.username,
+          postId: comment.postId,
+          created_at: new Date(),
+        };
+        console.debug(currentUser.username + &quot; is adding a new comment to the post :  &quot; + comment.postId + &quot; : &quot; + commentDto.content)
+        return this.httpClient.post&lt;Comment&gt;(&#x60;${this.apiUrl}/${comment.postId}/comments&#x60;, commentDto);
+      })
+    );
+  }
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PostService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
