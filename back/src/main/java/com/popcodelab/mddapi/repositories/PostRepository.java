@@ -28,8 +28,13 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    //List<Post> findByTopicId(Long topicId);
 
+    /**
+     * Finds a list of posts based on the provided topic IDs.
+     *
+     * @param topicIds The list of topic IDs.
+     * @return A list of posts matching the given topic IDs.
+     */
     @Query("SELECT p FROM Post p WHERE p.topicId IN (:topicIds)")
     List<Post> findByTopicIds(@Param("topicIds") List<Long> topicIds);
 }

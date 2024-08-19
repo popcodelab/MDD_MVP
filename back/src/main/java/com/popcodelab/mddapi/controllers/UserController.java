@@ -79,7 +79,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found"),
             @ApiResponse(responseCode = "500", description = "Internal Server Error : An unexpected error occurred")
     })
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, Authentication authentication) {
+    public ResponseEntity<UserDto> updateUser(final @RequestBody UserDto userDto,final Authentication authentication) {
         UserDto updatedUser = userService.updateUser(userDto, authentication);
         return ResponseEntity.ok(updatedUser);
     }

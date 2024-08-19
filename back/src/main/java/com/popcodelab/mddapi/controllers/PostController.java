@@ -42,9 +42,12 @@ public class PostController {
     private final PostService postService;
 
     /**
-     * The PostController class is responsible for handling requests related to posts.
+     * Creates a new instance of the PostController class with the provided PostService and UserService.
+     *
+     * @param postService The PostService to use for handling post-related operations.
+     * @param userService The UserService to use for handling user-related operations.
      */
-    public PostController(PostService postService, UserService userService) {
+    public PostController(final PostService postService, final UserService userService) {
         this.postService = postService;
         this.userService = userService;
     }

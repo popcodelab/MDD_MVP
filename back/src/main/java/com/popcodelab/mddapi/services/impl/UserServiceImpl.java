@@ -189,7 +189,7 @@ public class UserServiceImpl implements UserService {
      * @param topicId the ID of the topic to validate
      * @throws EntityNotFoundException if the topic does not exist
      */
-    private void validateTopicExists(Long topicId) {
+    private void validateTopicExists(final Long topicId) {
         if (!topicRepository.existsById(topicId)) {
             throw new EntityNotFoundException("Topic not found");
         }
@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
      * @param topicId the topic ID to check if the user is subscribed to
      * @throws IllegalArgumentException if the user is already subscribed to the specified topic
      */
-    private void validateUserAlreadySubscribed(User user, Long topicId) {
+    private void validateUserAlreadySubscribed(final User user, final Long topicId) {
         if (user.getSubscribedTopicIds().contains(topicId)) {
             throw new IllegalArgumentException("User has already subscribed to this topic");
         }

@@ -18,6 +18,30 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The CommentServiceImpl class implements the CommentService interface,
+ * providing methods for retrieving and adding comments to a post.
+ * It is annotated with @Service, indicating that it is a service component
+ * that should be automatically detected and registered as a bean in the Spring context.
+ * <p>
+ * This class uses the CommentRepository, UserRepository, and PostRepository interfaces
+ * to retrieve data from the database. It also uses the ModelMapper library to convert
+ * Comment entities to CommentDto objects for the API response.
+ * <p>
+ * The getAllCommentsByPostId method retrieves all comments for a given post ID.
+ * It uses the CommentRepository's findCommentsByPostId method to retrieve the comments
+ * from the database, and then converts them to CommentDto objects using the convertToDto method.
+ * <p>
+ * The convertToDto method converts a Comment entity to a CommentDto object,
+ * also setting up the author of the comment by retrieving the corresponding User entity
+ * from the UserRepository.
+ * <p>
+ * The addNewComment method adds a new comment to a post. It first retrieves the user
+ * and post entities specified in the commentDto from the UserRepository and PostRepository,
+ * and then saves the new comment using the CommentRepository. It also updates the list
+ * of comment IDs in the post entity and saves it back to the database. Finally, it converts
+ * the newly saved comment to a CommentDto object and returns it.
+ */
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -38,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
      * @return a list of CommentDto containing all comments for the specified post ID
      */
     @Override
-    public List<CommentDto> getAllCommentsByPostId(Long postId) {
+    public List<CommentDto> getAllCommentsByPostId(final Long postId) {
         return commentRepository.findCommentsByPostId(postId).stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
@@ -56,6 +80,13 @@ public class CommentServiceImpl implements CommentService {
         return commentDto;
     }
 
+    /**
+     * Adds a new comment to a post.
+     *
+     * @param commentDto the CommentDto object containing the details of the comment to be added
+     * @return the CommentDto object representing the newly added comment
+     * @throws EntityNotFoundException if the user or post specified in the commentDto doesn't exist
+     */
     @Override
     public CommentDto addNewComment(CommentDto commentDto) {
         User user = userRepository.findById(commentDto.getUserId())

@@ -10,12 +10,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Date;
 
+/**
+ * GlobalExceptionHandler is a class that handles global exceptions and returns an error response.
+ * It is annotated with @ControllerAdvice to specify that it should be applied globally to all controllers.
+ * It extends ResponseEntityExceptionHandler to leverage the default exception handling provided by it.
+ */
 @ControllerAdvice
 @Log4j2
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Handles global exceptions and returns an error response.
+     *
+     * @param ex The exception that occurred.
+     * @param request The web request that triggered the exception.
+     * @return A ResponseEntity containing an ErrorDetails object.
+     */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
+    public ResponseEntity<?> globalExceptionHandler(final Exception ex, final WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
         log.error("An error has occurred ! : {} > {}", errorDetails.getMessage(), errorDetails.getDetails());
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,7 +1,6 @@
 package com.popcodelab.mddapi.controllers;
 
 import com.popcodelab.mddapi.dto.comment.CommentDto;
-import com.popcodelab.mddapi.dto.topic.TopicDto;
 import com.popcodelab.mddapi.services.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -42,7 +41,7 @@ public class CommentController {
      *
      * @param commentService The CommentService used to interact with the comments.
      */
-    public CommentController(CommentService commentService) {
+    public CommentController(final CommentService commentService) {
         this.commentService = commentService;
     }
 
@@ -88,7 +87,8 @@ public class CommentController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
-    public ResponseEntity<CommentDto> addNewCommentToPost(@PathVariable Long postId, @RequestBody CommentDto commentDTO) {
+    public ResponseEntity<CommentDto> addNewCommentToPost(final @PathVariable Long postId,
+                                                          final @RequestBody CommentDto commentDTO) {
         commentDTO.setPostId(postId);
         CommentDto createdComment = commentService.addNewComment(commentDTO);
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);

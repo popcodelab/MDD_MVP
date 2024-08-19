@@ -25,6 +25,12 @@ import java.util.List;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Long> {
 
+    /**
+     * Retrieves a list of Topic entities by their IDs.
+     *
+     * @param ids the list of IDs of the Topic entities to retrieve
+     * @return a list of Topic entities matching the provided IDs
+     */
     @Query("SELECT t FROM Topic t WHERE t.id IN (:ids)")
     List<Topic> findByIds(@Param("ids") List<Long> ids);
 }

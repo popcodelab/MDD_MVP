@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService {
      * @param topicIds a list of topic IDs
      * @return a list of PostDto objects representing posts from user topics
      */
-    public List<PostDto> getPostsFromUserTopics(List<Long> topicIds) {
+    public List<PostDto> getPostsFromUserTopics(final List<Long> topicIds) {
         List<Post> allPosts = postRepository.findByTopicIds(topicIds);
         Set<Long> userIds = allPosts.stream().map(Post::getUserId).collect(Collectors.toSet());
         Set<Long> topicIdsInPosts = allPosts.stream().map(Post::getTopicId).collect(Collectors.toSet());
@@ -68,30 +68,19 @@ public class PostServiceImpl implements PostService {
         }).collect(Collectors.toList());
     }
 
-//    @Override
-//    public Optional<PostDto> getPostById(Long id) {
-//        return postRepository.findById(id)
-//                .map(post -> {
-//                    User author = userRepository.findById(post.getUserId())
-//                            .orElseThrow(() -> new EntityNotFoundException("User not found with id " + post.getUserId()));
-//                    Topic topic = topicRepository.findById(post.getTopicId())
-//                            .orElseThrow(() -> new EntityNotFoundException("topic not found with id " + post.getTopicId()));
-//
-//                    PostDto postDto = modelMapper.map(post, PostDto.class) ;
-//                    postDto.setUsername(author.getUsername());
-//                    postDto.setTopicTitle(topic.getTitle());
-//
-//                    return postDto;
-//                });
-//    }
-
+    /**
+     * Retrieves a post by its ID.
+     *
+     * @param id the ID of the post to retrieve
+     * @return an Optional containing the PostDto associated with the given ID, or an empty Optional if no post is found
+     */
     @Override
-    public Optional<PostDto> getPostById(Long id) {
+    public Optional<PostDto> getPostById(final Long id) {
         return postRepository.findById(id)
                 .map(this::mapPostToPostDto);
     }
 
-    private PostDto mapPostToPostDto(Post post) {
+    private PostDto mapPostToPostDto(final Post post) {
         User author = userRepository.findById(post.getUserId())
                 .orElseThrow(() -> prepareEntityNotFoundException("User", post.getUserId()));
         Topic topic = topicRepository.findById(post.getTopicId())
@@ -104,7 +93,7 @@ public class PostServiceImpl implements PostService {
         return postDto;
     }
 
-    private EntityNotFoundException prepareEntityNotFoundException(String entityType, Long id) {
+    private EntityNotFoundException prepareEntityNotFoundException(final String entityType, final Long id) {
         log.warn(entityType + " not found with id " + id);
         return new EntityNotFoundException(entityType + " not found with id " + id);
     }
@@ -118,7 +107,7 @@ public class PostServiceImpl implements PostService {
      * @throws EntityNotFoundException If the provided userId or topicId does not exist.
      */
     @Override
-    public PostDto newPost(PostDto postDto) {
+    public PostDto newPost(final PostDto postDto) {
         Long userId = postDto.getUserId();
         Long topicId = postDto.getTopicId();
         validateUserAndTopicExistence(userId, topicId);
@@ -149,7 +138,7 @@ public class PostServiceImpl implements PostService {
      * @param topicId the ID of the topic
      * @throws EntityNotFoundException if the user or topic does not exist
      */
-    private void validateUserAndTopicExistence(Long userId, Long topicId) {
+    private void validateUserAndTopicExistence(final Long userId, final Long topicId) {
         if (!userRepository.existsById(userId) || !topicRepository.existsById(topicId)) {
             log.error("Attempted to create a post for non-existent user or topic. User ID: {}, Topic ID: {}", userId, topicId);
             throw new EntityNotFoundException("User or topic does not exist");

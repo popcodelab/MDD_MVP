@@ -39,9 +39,16 @@ import java.util.Collections;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    /**
+     * The JWT secret used for signing and verifying JWT tokens.
+     */
     @Value("${application.security.jwt.secret}")
     private String jwtSecret;
 
+    /**
+     * The url of the client for connecting to the server.
+     * This value is loaded from a configuration file using @Value annotation.
+     */
     @Value("${client.url}")
     private String clientUrl;
 
@@ -103,6 +110,11 @@ public class SecurityConfiguration {
             "/v3/api-docs/**"
     };
 
+    /**
+     * Returns the CorsConfigurationSource implementation used to define the CORS (Cross-Origin Resource Sharing)
+     * configuration for the application.
+     * @return the CorsConfigurationSource instance
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -123,7 +135,7 @@ public class SecurityConfiguration {
      * @throws Exception if an error occurs while configuring the filter chain
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         log.debug("SecurityFilterChain called");
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
         http.csrf(AbstractHttpConfigurer::disable);
