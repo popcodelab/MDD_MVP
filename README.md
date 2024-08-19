@@ -56,13 +56,46 @@ Clone these repositories :
 
 ### Configuring the Back-End
 
-Open the `application.properties` file located in the `back/src/main/resources` directory to Replace the properties with your parameters:
+Open the `application.yml` file located in the `back/src/main/resources` directory to Replace the properties with your parameters or using an `.env` file :
 
 ```properties
-spring.datasource.url=${APP_DB_URL}
-spring.datasource.username=${APP_DB_USERNAME}
-spring.datasource.password=${APP_DB_PASSWORD}
+spring:
+  datasource:
+    url: jdbc:mysql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
+    username: ${APP_DB_USER}
+    password: ${APP_DB_PASS}
+
+    ...
+
+application:
+  security:
+    jwt:
+      secret: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
+
+client:
+  url: ${CLIENT_URL}
+
+  server:
+
+  port: ${APP_BACKEND_PORT}
+
 ```
+
+here is an example of `.env` file :
+
+```properties
+APP_DB_HOST=localhost
+APP_DB_PORT=3306
+APP_DB_NAME=database_name
+APP_DB_USER=user_name
+APP_DB_PASS=passowrd
+JWT_SECRET_KEY=your_secret_key
+JWT_EXPIRATION=86400000
+CLIENT_URL=http://localhost:4300
+APP_BACKEND_PORT=3005
+```
+
 
 ## Database setup 
 

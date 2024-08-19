@@ -45,6 +45,6 @@ client:
 # Application server
 server:
   host: http://localhost
-  port: 3005
+  port: ${APP_BACKEND_PORT}
 
 
